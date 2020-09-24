@@ -14,7 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {signUp} from "./../models/users"
+import {resendVerifiationCode, confirmverificationcode} from "./../models/users"
 import { render } from '@testing-library/react';
 import { Router } from '@material-ui/icons';
 import {useHistory,useParams} from 'react-router-dom'
@@ -48,40 +48,43 @@ export default function VerifiationCode(props) {
   const classes = useStyles();
   const [data,setData]=useState({verificationcode:''});
   const [submitBtn,setSubmitBtn]=useState(false);
-  const [error,setError]=useState({name:false,mobileno:false,password:false})
-  const [errorMessage,setErrorMessage]=useState({name:'',mobileno:'',password:''})
-  const [isUserAlreadyReg,setIuserAlreadyRegister]=useState(false);
+  const [error,setError]=useState({verificationcode:false})
+  const [errorMessage,setErrorMessage]=useState({verificationcode:""})
+  const [isMessageResended,setIsMessageResended]=useState(false);
   const parameter=useParams()
   const history=useHistory()
-  console.log(parameter);
 
+
+  function resendverificationcode(){
+    resendVerifiationCode({
+      callback:(res,status)=>{
+        setIsMessageResended(true);
+      },
+      id:parameter.id,
+      context:this});
+  }
 
   function onSumbit(e) {
     e.preventDefault();
     setSubmitBtn(true);
-    signUp({callback:btnacrive,data:data,context:this});
-    
-    
-  }
-  function btnacrive(res,status){
+    confirmverificationcode({callback:btnactive,id:parameter.id,data:data,context:this});
+    }
+  function btnactive(res,status){
     console.log(res)
     if(status==200){
+      alert("code verified")
 
-    }else if(status==400){
-        setError({
-          name:res.error[0].name?true:false,
-          mobileno:res.error[0].mobileno?true:false,
-          password:res.error[0].password?true:false});
-        setErrorMessage({
-          name:res.error[0].name?res.error[0].name[0].join():'',
-          mobileno:res.error[0].mobileno?res.error[0].mobileno[0].join():'',
-          password:res.error[0].password?res.error[0].mobileno[0].join():''});
+    }else if(status==409){
+        setError({verificationcode:true});
+        setErrorMessage({verificationcode:"Invalid verification Code"});
           setSubmitBtn(false);
       
-    }else if(status==409){
-        setIuserAlreadyRegister(true);
-        setSubmitBtn(false);
+    }else if(status==404){
 
+    }else if(status=400){
+      setError({verificationcode:true});
+      setErrorMessage({verificationcode:"Verification Code can't be empty"});
+        setSubmitBtn(false);
     }
   }
   function onChange(e) {
@@ -98,14 +101,14 @@ export default function VerifiationCode(props) {
           Mobile Number Verifiation
         </Typography>
         {(()=>{
-          if(!isUserAlreadyReg)
+          if(!isMessageResended)
             return null;
           return (
-            <Alert severity='info' fullWidth className={classes.fullWidth} onClose={()=>{setIuserAlreadyRegister(false)}}>
+            <Alert severity='info' fullWidth className={classes.fullWidth} onClose={()=>{setIsMessageResended(false)}}>
               <AlertTitle>
                 information
               </AlertTitle>
-            Account is already registerd, Please Login
+            Verification Code is re-sended
           </Alert>);
           
         })()}
@@ -114,8 +117,8 @@ export default function VerifiationCode(props) {
             <Grid item xs={12}>
               <TextField
                 autoComplete="VerificationCode"
-                error={error.name}
-                helperText={errorMessage.name}
+                error={error.verificationcode}
+                helperText={errorMessage.verificationcode}
                 name="verificationcode"
                 variant="outlined"
                 required
@@ -141,14 +144,9 @@ export default function VerifiationCode(props) {
           </Button>
           <Grid container justify="flex-end">
             <Grid item xs>
-             <UiLink >
-             Resend the code
+             <UiLink onClick={resendverificationcode}>
+             <u>Resend the code</u>
              </UiLink>
-            </Grid>
-            <Grid item>
-              <Link to='/signin' variant="body2">
-                Already have an account? Sign in
-              </Link>
             </Grid>
           </Grid>
         </form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Route,Link } from 'react-router-dom';
-
+import {signIn} from "../models/users"
+import { Alert, AlertTitle, setAlertboxbox, setAlertboxboxTitle } from '@material-ui/lab';
+import {Grow} from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,11 +34,43 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  fullWidth:{
+    width:'100%'
+  },
 }));
 
 export default function SignIn() {
   const classes = useStyles();
+  const [data,setData]=useState({mobileno:'',password:''})
+  const [error, setError] = useState({mobileno:false,password:false})
+  const [errorMessage, setErrorMessage] = useState({mobileno:'',password:''})
+  const [submitBtn, setSubmitBtn] = useState(false)
+  const [AlertboxShow, setAlertboxShow] = useState(false)
+  const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
+  function onSubmit(e){
+    e.preventDefault()
+    signIn({callback:submitCallack,data:data})
+  }
 
+  function submitCallack(res,status){
+    if(status==200){
+      alert("sucessfully login");
+    }else if(status==400){
+      setError({
+        mobileno:res.error[0].mobileno?true:false,
+        password:res.error[0].password?true:false});
+      setErrorMessage({
+        mobileno:res.error[0].mobileno?res.error[0].mobileno[0].join():'',
+        password:res.error[0].password?res.error[0].mobileno[0].join():''});
+        setSubmitBtn(false);
+    }else if(status==409){
+        setAlertboxShow(true);
+        setAlertbox({severity:"info",title:"Information",message:"Mobile Number or Password is Wrong"})
+    }
+  }
+  function onChange(e){
+    data[e.target.name]=e.target.value;
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,7 +81,19 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        {(()=>{
+        if(!AlertboxShow)
+          return null;
+        return(
+          <Grow in={true}>  
+          <Alert severity={Alertbox.severity} className={classes.fullWidth} onClose={()=>{setAlertboxShow(false)}}>
+            <AlertTitle>
+              {Alertbox.title}
+            </AlertTitle>
+            {Alertbox.message}
+          </Alert>
+          </Grow>)})()}
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -58,6 +104,7 @@ export default function SignIn() {
             name="mobileno"
             autoComplete="mobile-number"
             autoFocus
+            onChange={onChange}
           />
           <TextField
             variant="outlined"
@@ -69,6 +116,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={onChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -80,6 +128,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={submitBtn}
           >
             Sign In
           </Button>

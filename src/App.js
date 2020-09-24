@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SignIn from './pages/login';
+import SignIn from './pages/signin';
 import SignUp from './pages/signup'
 import VerificationCode from './pages/verificationcode'
 import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom'
