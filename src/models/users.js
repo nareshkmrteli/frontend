@@ -3,7 +3,7 @@ import config from './../config'
 import qs from "qs"
     
 export function signUp(props){
-        axios.post("http://127.0.0.1:8080/users/users/?format=json",qs.stringify(props.data)).then((res) => {
+        axios.post(config.root+"/users/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -12,7 +12,7 @@ export function signUp(props){
         });
     }
 export function signIn(props){
-    axios.post("http://127.0.0.1:8080/users/users/login/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(config.root+"/users/login/?format=json",qs.stringify(props.data)).then((res) => {
         const data=res.data   
         props.callback.call(props.context,data.data,data.status);
     }).catch((err)=>{
@@ -22,7 +22,7 @@ export function signIn(props){
     
 }
 export function resendVerifiationCode(props){
-    axios.post("http://127.0.0.1:8080/users/users/"+props.id+"/resendverificationcode/?format=json").then((res) => {
+    axios.post(config.root+"/users/"+props.id+"/resendverificationcode/?format=json").then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -31,7 +31,16 @@ export function resendVerifiationCode(props){
         });
 }
 export function confirmverificationcode(props){
-    axios.post("http://127.0.0.1:8080/users/users/"+props.id+"/confirmverificationcode/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(config.root+"/users/"+props.id+"/confirmverificationcode/?format=json",qs.stringify(props.data)).then((res) => {
+            const data=res.data   
+            props.callback.call(props.context,data.data,data.status);
+        }).catch((err)=>{
+            alert('fail')
+            console.log(err)        
+        });
+}
+export function recoverPassword(props){
+    axios.post(config.root+"/users/recoverpassword/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{

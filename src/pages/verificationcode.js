@@ -72,8 +72,7 @@ export default function VerifiationCode(props) {
   function btnactive(res,status){
     console.log(res)
     if(status==200){
-      alert("code verified")
-
+      history.push('/')
     }else if(status==409){
         setError({verificationcode:true});
         setErrorMessage({verificationcode:"Invalid verification Code"});

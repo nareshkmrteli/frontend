@@ -15,6 +15,7 @@ import { Route,Link } from 'react-router-dom';
 import {signIn} from "../models/users"
 import { Alert, AlertTitle, setAlertboxbox, setAlertboxboxTitle } from '@material-ui/lab';
 import {Grow} from "@material-ui/core"
+import {useHistory} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,14 +48,15 @@ export default function SignIn() {
   const [submitBtn, setSubmitBtn] = useState(false)
   const [AlertboxShow, setAlertboxShow] = useState(false)
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
+  const history=useHistory();
   function onSubmit(e){
-    e.preventDefault()
-    signIn({callback:submitCallack,data:data})
+    e.preventDefault();
+    signIn({callback:submitCallack,data:data});
   }
 
   function submitCallack(res,status){
     if(status==200){
-      alert("sucessfully login");
+      history.push('/')
     }else if(status==400){
       setError({
         mobileno:res.error[0].mobileno?true:false,
