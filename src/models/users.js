@@ -48,3 +48,12 @@ export function recoverPassword(props){
             console.log(err)        
         });
 }
+export function signout(props){
+    axios.post(config.root+"/users/logout/?format=json").then((res) => {
+        const data=res.data   
+        props.callback.call(props.context,data.data,data.status);
+    }).catch((err)=>{
+        alert('fail')
+        console.log(err)        
+    });
+}
