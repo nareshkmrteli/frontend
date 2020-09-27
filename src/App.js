@@ -7,6 +7,7 @@ import VerificationCode from './pages/verificationcode'
 import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom'
 import RecoverPassword from './pages/recoverpassword';
 import Account from "./pages/account"
+import SetNewPassword from './pages/setnewpassword'
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path='/account'>
           <Account/>
+        </Route>
+        <Route path='/setnewpassword'>
+          <SetNewPassword/>
         </Route>
       </Switch>
     </Router>

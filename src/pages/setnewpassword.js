@@ -1,4 +1,3 @@
-// eslint-disable-next-line 
 import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,10 +12,23 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Route,Link } from 'react-router-dom';
-import {signIn} from "../models/users"
-import { Alert, AlertTitle, setAlertboxbox, setAlertboxboxTitle } from '@material-ui/lab';
+import Alert from '@material-ui/lab/Alert'
+import AlertTitle from '@material-ui/lab/AlertTitle'
 import {Grow} from "@material-ui/core"
-import {useHistory} from "react-router-dom"
+import {setNewPassword} from "./../models/users"
+import {useHistory} from 'react-router-dom/'
+
+import clsx from 'clsx';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,39 +48,37 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  fullWidth:{
-    width:'100%'
-  },
 }));
 
-export default function SignIn() {
+export default function SetNewPassword() {
   const classes = useStyles();
-  const [data,setData]=useState({mobileno:'',password:''})
-  const [error, setError] = useState({mobileno:false,password:false})
-  const [errorMessage, setErrorMessage] = useState({mobileno:'',password:''})
+  const [data,setData]=useState({password:''})
+  const [error, setError] = useState({password:false})
+  const [errorMessage, setErrorMessage] = useState({password:''})
   const [submitBtn, setSubmitBtn] = useState(false)
   const [AlertboxShow, setAlertboxShow] = useState(false)
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
-  const history=useHistory();
+  const [showPassword, setShowPassword] = useState(false)
+  const history=useHistory()
+  
   function onSubmit(e){
-    e.preventDefault();
-    signIn({callback:submitCallack,data:data});
+    e.preventDefault()
+    setNewPassword({callback:submitCallack,data:data})
   }
-
+function handleClickShowPassword (){
+    setShowPassword(!showPassword);
+  };
   function submitCallack(res,status){
     if(status==200){
-      history.push('/')
-    }else if(status==400){
+      console.log(res)
+      history.push('/'+res.id+'/verificationcode')
+    }else if(status==404){
       setError({
-        mobileno:res.error[0].mobileno?true:false,
-        password:res.error[0].password?true:false});
+        password:true});
       setErrorMessage({
-        mobileno:res.error[0].mobileno?res.error[0].mobileno[0].join():'',
-        password:res.error[0].password?res.error[0].mobileno[0].join():''});
-        setSubmitBtn(false);
-    }else if(status==409){
-        setAlertboxShow(true);
-        setAlertbox({severity:"info",title:"Information",message:"Mobile Number or Password is Wrong"})
+        password:res.error});
+      setSubmitBtn(false);
+    
     }
   }
   function onChange(e){
@@ -82,7 +92,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Recover Password
         </Typography>
         {(()=>{
         if(!AlertboxShow)
@@ -97,59 +107,36 @@ export default function SignIn() {
           </Alert>
           </Grow>)})()}
         <form className={classes.form} noValidate onSubmit={onSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="mobileno"
-            label="Mobile Number"
-            name="mobileno"
-            autoComplete="mobile-number"
-            autoFocus
+          <FormControl fullWidth required className={clsx(classes.margin, classes.textField)} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
+          <OutlinedInput
+            id="filled-adornment-password"
+            type={showPassword ? 'text' : 'password'}
             onChange={onChange}
+            name='password'
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={120}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={onChange}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+        </FormControl>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={submitBtn}
           >
-            Sign In
+            Set  Password
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to='/recoverpassword' variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-                <Route>
-                    <Link to='/signup' variant="body2">
-                    {"Don't have an account? Sign Up"}
-                    </Link>
-                </Route>
-              
-            </Grid>
-          </Grid>
         </form>
       </div>
     </Container>
