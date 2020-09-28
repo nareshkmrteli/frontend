@@ -15,20 +15,8 @@ import { Route,Link } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert'
 import AlertTitle from '@material-ui/lab/AlertTitle'
 import {Grow} from "@material-ui/core"
-import {setNewPassword} from "./../models/users"
+import {recoverPassword} from "./../../models/users"
 import {useHistory} from 'react-router-dom/'
-
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,33 +38,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SetNewPassword() {
+export default function RecoverPassword() {
   const classes = useStyles();
-  const [data,setData]=useState({password:''})
-  const [error, setError] = useState({password:false})
-  const [errorMessage, setErrorMessage] = useState({password:''})
+  const [data,setData]=useState({mobileno:''})
+  const [error, setError] = useState({mobileno:false})
+  const [errorMessage, setErrorMessage] = useState({mobileno:''})
   const [submitBtn, setSubmitBtn] = useState(false)
   const [AlertboxShow, setAlertboxShow] = useState(false)
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
-  const [showPassword, setShowPassword] = useState(false)
   const history=useHistory()
-  
   function onSubmit(e){
     e.preventDefault()
-    setNewPassword({callback:submitCallack,data:data})
+    recoverPassword({callback:submitCallack,data:data})
   }
-function handleClickShowPassword (){
-    setShowPassword(!showPassword);
-  };
+
   function submitCallack(res,status){
     if(status==200){
       console.log(res)
-      history.push('/'+res.id+'/verificationcode')
+      history.push('/account/'+res.id+'/verificationcode')
     }else if(status==404){
       setError({
-        password:true});
+        mobileno:true});
       setErrorMessage({
-        password:res.error});
+        mobileno:res.error});
       setSubmitBtn(false);
     
     }
@@ -107,27 +91,22 @@ function handleClickShowPassword (){
           </Alert>
           </Grow>)})()}
         <form className={classes.form} noValidate onSubmit={onSubmit}>
-          <FormControl fullWidth required className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
-          <OutlinedInput
-            id="filled-adornment-password"
-            type={showPassword ? 'text' : 'password'}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="mobileno"
+            label="Mobile Number"
+            name="mobileno"
+            autoComplete="phone"
+            autoFocus
             onChange={onChange}
-            name='password'
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={120}
+            error={error.mobileno}
+            helperText={errorMessage.mobileno}
+            
           />
-        </FormControl>
+          
           <Button
             type="submit"
             fullWidth
@@ -135,8 +114,15 @@ function handleClickShowPassword (){
             color="primary"
             className={classes.submit}
           >
-            Set  Password
+            Send Verification Code
           </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link to="/account/signin" variant="body2">
+                have account ?Login
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>

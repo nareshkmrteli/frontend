@@ -14,7 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {signUp} from "./../models/users"
+import {signUp} from "./../../models/users"
 import { render } from '@testing-library/react';
 import { Router } from '@material-ui/icons';
 import {useHistory} from 'react-router-dom/'
@@ -61,7 +61,7 @@ export default function SignUp() {
   function btnacrive(res,status){
     console.log(res)
     if(status==200){
-      history.push('/'+res.id+'/verificationcode')
+      history.push('/account/'+res.id+'/verificationcode')
 
     }else if(status==400){
         setError({
@@ -167,7 +167,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to='/signin' variant="body2">
+              <Link to='/account/signin' variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

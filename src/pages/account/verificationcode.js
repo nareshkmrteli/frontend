@@ -15,11 +15,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {resendVerifiationCode, confirmverificationcode} from "./../models/users"
+import {resendVerifiationCode, confirmverificationcode} from "./../../models/users"
 import { render } from '@testing-library/react';
 import { Router } from '@material-ui/icons';
 import {useHistory,useParams} from 'react-router-dom'
 import {Link as UiLink} from '@material-ui/core'
+import {getUserContext} from './../../context/usercontext'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -54,7 +55,7 @@ export default function VerifiationCode(props) {
   const [isMessageResended,setIsMessageResended]=useState(false);
   const parameter=useParams()
   const history=useHistory()
-
+  const usercontext=getUserContext()
 
   function resendverificationcode(){
     resendVerifiationCode({
@@ -73,7 +74,12 @@ export default function VerifiationCode(props) {
   function btnactive(res,status){
     console.log(res)
     if(status==200){
-      history.push('/')
+      console.log(res)
+      usercontext.setIsUserLogined(true)
+      window.localStorage.setItem('name',res.name)
+      window.localStorage.setItem('mobileno',res.mobileno)
+      
+      history.push('/account')
     }else if(status==409){
         setError({verificationcode:true});
         setErrorMessage({verificationcode:"Invalid verification Code"});

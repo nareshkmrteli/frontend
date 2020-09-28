@@ -7,7 +7,7 @@ export function signUp(props){
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
-            alert('fail')
+            alert('Please Check Internet Connection')
             console.log(err)        
         });
     }
@@ -16,7 +16,7 @@ export function signIn(props){
         const data=res.data   
         props.callback.call(props.context,data.data,data.status);
     }).catch((err)=>{
-        alert('fail but why')
+        alert('Please Check Internet Connection')
         console.log(err)        
     });
     
@@ -26,7 +26,7 @@ export function resendVerifiationCode(props){
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
-            alert('fail')
+            alert('Please Check Internet Connection')
             console.log(err)        
         });
 }
@@ -35,7 +35,7 @@ export function confirmverificationcode(props){
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
-            alert('fail')
+            alert('Please Check Internet Connection')
             console.log(err)        
         });
 }
@@ -44,7 +44,7 @@ export function recoverPassword(props){
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
-            alert('fail')
+            alert('Please Check Internet Connection')
             console.log(err)        
         });
 }
@@ -53,7 +53,7 @@ export function signout(props){
         const data=res.data   
         props.callback.call(props.context,data.data,data.status);
     }).catch((err)=>{
-        alert('fail')
+        alert('Please Check Internet Connection')
         console.log(err)        
     });
 }
@@ -62,7 +62,7 @@ export function setNewPassword(props){
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
-            alert('fail')
+            alert('Please Check Internet Connection')
             console.log(err)        
         });
 }

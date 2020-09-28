@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+// eslint-disable-next-line 
+import React,{useState,useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,12 +12,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Route,Link } from 'react-router-dom';
-import Alert from '@material-ui/lab/Alert'
-import AlertTitle from '@material-ui/lab/AlertTitle'
+import { Route,Link, useRouteMatch } from 'react-router-dom';
+import {signIn} from "./../../models/users"
+import { Alert, AlertTitle, setAlertboxbox, setAlertboxboxTitle } from '@material-ui/lab';
 import {Grow} from "@material-ui/core"
-import {recoverPassword} from "./../models/users"
-import {useHistory} from 'react-router-dom/'
+import {useHistory} from "react-router-dom"
+
+import {getUserContext} from './../../context/usercontext'
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,33 +39,46 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  fullWidth:{
+    width:'100%'
+  },
 }));
 
-export default function RecoverPassword() {
+export default function SignIn() {
+  const {path,url}=useRouteMatch();
   const classes = useStyles();
-  const [data,setData]=useState({mobileno:''})
-  const [error, setError] = useState({mobileno:false})
-  const [errorMessage, setErrorMessage] = useState({mobileno:''})
+  const [data,setData]=useState({mobileno:'',password:''})
+  const [error, setError] = useState({mobileno:false,password:false})
+  const [errorMessage, setErrorMessage] = useState({mobileno:'',password:''})
   const [submitBtn, setSubmitBtn] = useState(false)
   const [AlertboxShow, setAlertboxShow] = useState(false)
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
-  const history=useHistory()
+  const history=useHistory();
+  const usercontext=getUserContext()
+
   function onSubmit(e){
-    e.preventDefault()
-    recoverPassword({callback:submitCallack,data:data})
+    e.preventDefault();
+    signIn({callback:submitCallack,data:data});
   }
 
   function submitCallack(res,status){
     if(status==200){
-      console.log(res)
-      history.push('/'+res.id+'/verificationcode')
-    }else if(status==404){
+      usercontext.setIsUserLogined(true)
+      window.localStorage.setItem('name',res.name)
+      window.localStorage.setItem('mobileno',res.mobileno)
+      history.push('/account')
+      
+    }else if(status==400){
       setError({
-        mobileno:true});
+        mobileno:res.error[0].mobileno?true:false,
+        password:res.error[0].password?true:false});
       setErrorMessage({
-        mobileno:res.error});
-      setSubmitBtn(false);
-    
+        mobileno:res.error[0].mobileno?res.error[0].mobileno[0].join():'',
+        password:res.error[0].password?res.error[0].mobileno[0].join():''});
+        setSubmitBtn(false);
+    }else if(status==409){
+        setAlertboxShow(true);
+        setAlertbox({severity:"info",title:"Information",message:"Mobile Number or Password is Wrong"})
     }
   }
   function onChange(e){
@@ -76,7 +92,7 @@ export default function RecoverPassword() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Recover Password
+          Sign in
         </Typography>
         {(()=>{
         if(!AlertboxShow)
@@ -99,28 +115,49 @@ export default function RecoverPassword() {
             id="mobileno"
             label="Mobile Number"
             name="mobileno"
-            autoComplete="phone"
+            autoComplete="mobile-number"
             autoFocus
             onChange={onChange}
-            error={error.mobileno}
-            helperText={errorMessage.mobileno}
-            
           />
-          
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={onChange}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={submitBtn}
           >
-            Send Verification Code
+            Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="/signin" variant="body2">
-                have account ?Login
+              <Link to='/account/recoverpassword' variant="body2">
+                Forgot password?
               </Link>
+            </Grid>
+            <Grid item>
+                <Route>
+                   <Link to={`/account/signup`}  variant="body2">
+                    {"Don't have an account? Sign Up"}
+                    </Link>
+                </Route>
+              
             </Grid>
           </Grid>
         </form>
