@@ -37,6 +37,6 @@ export function UserContextProvider(props){
     </UserContext.Provider>
   )
 } 
-export const getUserContext=()=>{
+export const GetUserContext=()=>{
   return useContext(UserContext)
 }

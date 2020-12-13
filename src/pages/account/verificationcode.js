@@ -20,7 +20,7 @@ import { render } from '@testing-library/react';
 import { Router } from '@material-ui/icons';
 import {useHistory,useParams} from 'react-router-dom'
 import {Link as UiLink} from '@material-ui/core'
-import {getUserContext} from './../../context/usercontext'
+import {GetUserContext} from './../../context/usercontext'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -55,7 +55,7 @@ export default function VerifiationCode(props) {
   const [isMessageResended,setIsMessageResended]=useState(false);
   const parameter=useParams()
   const history=useHistory()
-  const usercontext=getUserContext()
+  const usercontext=GetUserContext()
 
   function resendverificationcode(){
     resendVerifiationCode({

@@ -18,12 +18,12 @@ import { Alert, AlertTitle, setAlertboxbox, setAlertboxboxTitle } from '@materia
 import {Grow} from "@material-ui/core"
 import {useHistory} from "react-router-dom"
 
-import {getUserContext} from './../../context/usercontext'
+import {GetUserContext} from './../../context/usercontext'
 
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   fullWidth:{
     width:'100%'
   },
+  height:{
+    padding:"2px",
+  }
 }));
 
 export default function SignIn() {
@@ -54,7 +57,7 @@ export default function SignIn() {
   const [AlertboxShow, setAlertboxShow] = useState(false)
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
   const history=useHistory();
-  const usercontext=getUserContext()
+  const usercontext=GetUserContext()
 
   function onSubmit(e){
     e.preventDefault();
@@ -86,7 +89,6 @@ export default function SignIn() {
   }
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -154,7 +156,9 @@ export default function SignIn() {
             <Grid item>
                 <Route>
                    <Link to={`/account/signup`}  variant="body2">
-                    {"Don't have an account? Sign Up"}
+                     <Typography variant='body2'>
+                       {"Don't have an account? Sign Up"}
+                     </Typography>
                     </Link>
                 </Route>
               

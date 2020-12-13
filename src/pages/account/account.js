@@ -1,5 +1,4 @@
 import React from "react"
-
 import RecoverPassword from './recoverpassword'
 import AccountProfile from "./accountprofile"
 import SetNewPassword from './setnewpassword'
@@ -29,7 +28,7 @@ export function Account(){
                     <VerificationCode/>
                 </Route>
                 <Route  path={`${path}/setnewpassword`} component={SetNewPassword}/>
-                 <Route path={`${path}/signout`}>
+                <Route path={`${path}/signout`}>
                     <Signout/>
                 </Route>
 

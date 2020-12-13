@@ -1,9 +1,9 @@
 import  axios from "axios"
-import config from './../config'
+import setting from './../setting'
 import qs from "qs"
 axios.defaults.withCredentials=true
 export function signUp(props){
-        axios.post(config.root+"/users/?format=json",qs.stringify(props.data)).then((res) => {
+        axios.post(setting.root+"/users/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -12,7 +12,7 @@ export function signUp(props){
         });
     }
 export function signIn(props){
-    axios.post(config.root+"/users/login/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(setting.root+"/users/login/?format=json",qs.stringify(props.data)).then((res) => {
         const data=res.data   
         props.callback.call(props.context,data.data,data.status);
     }).catch((err)=>{
@@ -22,7 +22,7 @@ export function signIn(props){
     
 }
 export function resendVerifiationCode(props){
-    axios.post(config.root+"/users/"+props.id+"/resendverificationcode/?format=json").then((res) => {
+    axios.post(setting.root+"/users/"+props.id+"/resendverificationcode/?format=json").then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -31,7 +31,7 @@ export function resendVerifiationCode(props){
         });
 }
 export function confirmverificationcode(props){
-    axios.post(config.root+"/users/"+props.id+"/confirmverificationcode/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(setting.root+"/users/"+props.id+"/confirmverificationcode/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -40,7 +40,7 @@ export function confirmverificationcode(props){
         });
 }
 export function recoverPassword(props){
-    axios.post(config.root+"/users/recoverpassword/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(setting.root+"/users/recoverpassword/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{
@@ -49,7 +49,7 @@ export function recoverPassword(props){
         });
 }
 export function signout(props){
-    axios.post(config.root+"/users/logout/?format=json").then((res) => {
+    axios.post(setting.root+"/users/logout/?format=json").then((res) => {
         const data=res.data   
         props.callback.call(props.context,data.data,data.status);
     }).catch((err)=>{
@@ -58,7 +58,7 @@ export function signout(props){
     });
 }
 export function setNewPassword(props){
-    axios.post(config.root+"/users/setnewpassword/?format=json",qs.stringify(props.data)).then((res) => {
+    axios.post(setting.root+"/users/setnewpassword/?format=json",qs.stringify(props.data)).then((res) => {
             const data=res.data   
             props.callback.call(props.context,data.data,data.status);
         }).catch((err)=>{

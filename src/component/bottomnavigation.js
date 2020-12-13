@@ -27,7 +27,7 @@ export default function AppBottomNavigation() {
         bottom: 0,
         textAlign:"center",
         maxWidth:'443px',
-        backgroundColor:"#c4c4c470",
+        backgroundColor:"rgb(232 232 232)",
       }}
       value={value}
       onChange={(event, newValue) => {

@@ -1,8 +1,8 @@
-import {getUserContext} from './../../context/usercontext'
+import {GetUserContext} from './../../context/usercontext'
 import {signout} from './../../models/users'
 import {useHistory} from 'react-router-dom'
 export default function Signout(){
-    const usercontext=getUserContext();
+    const usercontext=GetUserContext();
     const history=useHistory()
 
     signout({context:this,"callback":callback});

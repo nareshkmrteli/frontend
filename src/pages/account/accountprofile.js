@@ -59,6 +59,28 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>
                 <Divider/>
+                <Link to='/address/listaddress' style={{textDecoration:"none",color:"inherit"}}>
+                    <ListItem button>
+                                <ListItemText>
+                                Address
+                                </ListItemText>
+                                <ListItemSecondaryAction>
+                                    <KeyboardArrowRightIcon/>
+                                </ListItemSecondaryAction>
+                    </ListItem>
+                </Link>
+                <Divider/>
+                <Link to='/inventory/listinventory' style={{textDecoration:"none",color:"inherit"}}>
+                    <ListItem button>
+                                <ListItemText>
+                                Inventory
+                                </ListItemText>
+                                <ListItemSecondaryAction>
+                                    <KeyboardArrowRightIcon/>
+                                </ListItemSecondaryAction>
+                    </ListItem>
+                </Link>
+                <Divider/>
                 <Link to='/account/signout' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button >
                                     <ListItemText>
