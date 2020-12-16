@@ -1,17 +1,16 @@
-export const inventoryAction={
+export const categoryAction={
 
-    getInventoryList:(filters={})=>{
+    getCategoryList:(filters={})=>{
         return {
             type:"GET_LIST",
             filters:filters 
             //filter must an object this will append to url as query parameters
         }
     },
-    createInventory:(inventory)=>{
+    getProductList:(filters={})=>{
         return {
-            type:"CREATE_INVENTORY",
-            inventory:inventory
-            
+            type:"GET_PRODUCT_LIST",
+            product_filters:filters 
             //filter must an object this will append to url as query parameters
         }
     }

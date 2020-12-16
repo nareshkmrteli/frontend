@@ -42,7 +42,6 @@ export function CreateAddress(props){
     }
 
     function submitCallack(res,status){
-        console.log(res)
         if(status==200){
         history.push('/address/listaddress');
     }else if(status==404){
@@ -55,14 +54,7 @@ export function CreateAddress(props){
       
       }else if(status==400){
         setAlertboxShow(false);
-          
-        console.log({
-            village:res.error[0].village?true:false,
-            pincode:res.error[0].pincode?true:false
-        },{
-            village:res.error[0].village?res.error[0].village[0].join():'',
-            pincode:res.error[0].pincode?res.error[0].pincode[0].join():''
-        })
+
           setError({
               village:res.error[0].village?true:false,
               pincode:res.error[0].pincode?true:false

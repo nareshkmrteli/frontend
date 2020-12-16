@@ -7,10 +7,21 @@ function toQueryString(obj){
 }
 export const inventoryApi={
     list: async (data)=>{
-        const res= await axios.get(setting.root+"/inventory/inventory?format=json"+toQueryString(data))
+        const querystring=toQueryString(data)          
+        const res= await axios.get(setting.root+"/inventory/inventory/?format=json"+(querystring?'&'+querystring:""))
         return  res.data 
     },
-    add:(data)=>{
+    create:async (data)=>{
+        console.log(JSON.stringify(data))
+        const res= await axios.post(setting.root+"/inventory/inventory/?format=json",
+            JSON.stringify(data),
+            {
+                headers:{
+                    'content-type': 'application/json'
+
+            }
+        })
+        return  res.data 
     }
 }
-window.myapi=inventoryApi
+window.inventoryApi=inventoryApi

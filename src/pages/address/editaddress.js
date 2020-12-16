@@ -28,7 +28,6 @@ const useStyles=makeStyles((theme)=>({
 export function EditAddress(props){
     const classes=useStyles()
     const {state}=useLocation()
-    console.log(state)
     const [data, setData] = useState({id:state.editAddress.id,village:state.editAddress.village,pincode:state.editAddress.pincode,latitude:state.editAddress.latitude,longitude:state.editAddress.longitude})
     const [error, setError] = useState({village:false,pincode:false,latitude:false,longitude:false})
     const [errorMessage, setErrorMessage] = useState({village:'',pincode:'',latitude:'',longitude:''})
@@ -45,7 +44,6 @@ export function EditAddress(props){
     }
 
     function submitCallack(res,status){
-        console.log(res)
         if(status==200){
         history.push('/address/listaddress');
     }else if(status==404){
@@ -59,13 +57,6 @@ export function EditAddress(props){
       }else if(status==400){
         setAlertboxShow(false);
           
-        console.log({
-            village:res.error[0].village?true:false,
-            pincode:res.error[0].pincode?true:false
-        },{
-            village:res.error[0].village?res.error[0].village[0].join():'',
-            pincode:res.error[0].pincode?res.error[0].pincode[0].join():''
-        })
           setError({
               village:res.error[0].village?true:false,
               pincode:res.error[0].pincode?true:false

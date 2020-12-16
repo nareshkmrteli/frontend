@@ -70,8 +70,8 @@ export function ListAddress(){
                         loading...
                     </Typography>
                 )
-            return data.map((d)=>{
-            return( <div>
+            return data.map((d,i)=>{
+            return( <div key={i}>
                     <Card className={classes.customCard}>
                     <CardActionArea>
                     <CardContent>

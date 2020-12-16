@@ -10,6 +10,9 @@ import {UserContextProvider} from './context/usercontext'
 import {Address} from './pages/address/address'
 import {Account} from './pages/account/account'
 import {Inventory} from './pages/inventory/inventory'
+import {Product} from './pages/product/product'
+import {CategoryContext} from "./redux/category/category"
+import {ProductContext} from "./redux/product/product"
 function App() {
   const [isUserLogined, setIsUserLogined] = useState(false)
   const intialContext={isUserLogined,setIsUserLogined}
@@ -29,7 +32,9 @@ function App() {
   return (
   <ThemeProvider theme={theme}>
   <UserContextProvider>
-  <Container maxWidth='xs' style={{border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
+  <CategoryContext>
+  <ProductContext>
+    <Container maxWidth='xs' style={{border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
       <Router>
         <Switch>
           <Route  path='/account'>         
@@ -41,10 +46,15 @@ function App() {
           <Route  path='/inventory'>         
             <Inventory/>
           </Route>  
+          <Route  path='/product'>         
+            <Product/>
+          </Route>  
         </Switch>
       <AppBottomNavigation/>
       </Router>
-    </Container>    
+    </Container>
+  </ProductContext>
+  </CategoryContext>    
   </UserContextProvider>
   </ThemeProvider>
   );

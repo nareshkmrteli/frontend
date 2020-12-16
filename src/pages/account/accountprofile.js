@@ -70,7 +70,7 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>
                 <Divider/>
-                <Link to='/inventory/listinventory' style={{textDecoration:"none",color:"inherit"}}>
+                <Link to='/inventory' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 Inventory
