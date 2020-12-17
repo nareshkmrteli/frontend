@@ -1,13 +1,13 @@
-import React from "react"
+import { ListItemSecondaryAction } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import { Icon, ListItemSecondaryAction } from "@material-ui/core";
-import EditIcon from '@material-ui/icons/Edit';
+import { Delete } from '@material-ui/icons';
+import React from "react";
 export default function ShowList({results,list_load_successful}){
     return(
         <>
@@ -33,7 +33,7 @@ export default function ShowList({results,list_load_successful}){
                         }
                         />
                     <ListItemSecondaryAction>
-                        <EditIcon/>
+                        <Delete/>
                     </ListItemSecondaryAction>
                     </ListItem>
                     <Divider/>
