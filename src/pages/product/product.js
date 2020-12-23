@@ -1,22 +1,26 @@
-import {useRouteMatch,Route,Switch} from "react-router-dom"
 import React from "react"
-import {ListProduct} from './listproduct'
-import {ProductContext} from "../../redux/product/product"
-import {CategoryContext, categoryContext} from '../../redux/category/category'
-import {ProductSelect} from "./productselect"
+import { Route, Switch, useRouteMatch } from "react-router-dom"
+import { CreateProduct } from "./createproduct"
+import { EditProduct } from "./editproduct"
+import { ListProduct } from './listproduct'
+import { ListProductEditMode } from "./listproducteditmode"
+
 export function Product(){
-    const {path,url}=useRouteMatch()
+    const {path}=useRouteMatch()
     return(
                 <Switch>
                     <Route exact path={path}>
                         <ListProduct/>
                     </Route> 
-                    <Route exact path={`${path}/addproduct`}>
-                        
+                    <Route exact path={`${path}/createproduct`}>
+                        <CreateProduct/>
                     </Route> 
-                    <Route exact path={`${path}/selectproduct`}>
-                        <ProductSelect />
-                    </Route>              
+                    <Route exact path={`${path}/listproducteditmode`}>
+                        <ListProductEditMode />
+                    </Route>      
+                    <Route exact path={`${path}/editproduct`}>
+                        <EditProduct/>
+                    </Route>        
                 </Switch>             
         );
 }

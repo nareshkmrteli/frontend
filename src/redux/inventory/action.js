@@ -14,5 +14,11 @@ export const inventoryAction={
             
             //filter must an object this will append to url as query parameters
         }
+    },
+    deleteInventory:(id)=>{
+        return {
+            type: 'DELETE_INVENTORY',
+            id:id
+        }
     }
 }

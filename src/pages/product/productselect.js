@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from 'react'
-import {Container} from "@material-ui/core"
-import {ListProduct} from './listproduct'
-import {SelectedProduct} from './component/selectedproduct'
+import React from 'react'
+import { SelectedProduct } from './component/selectedproduct'
+import { ListProduct } from './listproduct'
 export  function ProductSelect({selectedProduct,setSelectedProduct}){  
     
     function selectedProductCallback(p){

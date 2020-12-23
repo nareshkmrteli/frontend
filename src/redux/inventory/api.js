@@ -1,6 +1,5 @@
-import axios from "axios"
-import setting from "../../setting"
-import qs from 'qs'
+import axios from "axios";
+import setting from "../../setting";
 function toQueryString(obj){
     const keys=Object.keys(obj)
     return keys.map(key => `${key}=${obj[key]}`).join('&');
@@ -22,6 +21,10 @@ export const inventoryApi={
             }
         })
         return  res.data 
+    },
+    delete:async(data)=>{   
+        const res=await axios.delete(setting.root+`/inventory/inventory/${data}/?format=json`)
+        return res.data
     }
 }
 window.inventoryApi=inventoryApi

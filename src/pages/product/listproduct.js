@@ -1,20 +1,16 @@
-import React,{useState,useEffect} from 'react'
-import {Avatar,TextField,Container,List,ListItem,ListItemAvatar,ListItemIcon,ListItemText,makeStyles, Divider,Typography, ListItemSecondaryAction, Button, FormControl, InputLabel, Select} from "@material-ui/core"
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import EditIcon from '@material-ui/icons/Edit';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Link,useHistory} from'react-router-dom'
-import {useDispatch,useSelector} from "../../redux/product/product"
-import {productAction} from "../../redux/product/action"
-import Loading from "../component/loading"
-import ShowList from "./component/showlist"
-import {useDispatch as useDispatchCategory,useSelector as useSelectorCategory} from "../../redux/category/category"
-import {categoryAction} from "../../redux/category/action"
-import qs from "qs"
-import {Pagination} from '../component/pagination'
-import {LinkButton} from "../component/linkbutton"
-import {DropDownInput} from '../component/dropdowninput'
-import {ConditionalDisplay} from "../component/condtionaldisplay"
+import { Container, makeStyles } from "@material-ui/core";
+import qs from "qs";
+import React, { useEffect } from 'react';
+import { categoryAction } from "../../redux/category/action";
+import { useDispatch as useDispatchCategory, useSelector as useSelectorCategory } from "../../redux/category/category";
+import { productAction } from "../../redux/product/action";
+import { useDispatch, useSelector } from "../../redux/product/product";
+import { ConditionalDisplay } from "../component/condtionaldisplay";
+import { DropDownInput } from '../component/dropdowninput';
+import { LinkButton } from "../component/linkbutton";
+import Loading from "../component/loading";
+import { Pagination } from '../component/pagination';
+import ShowList from "./component/showlist";
 const useStyles = makeStyles((theme)=>({
  
 }));
@@ -56,13 +52,19 @@ export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=
     }
     return(
     <Container maxWidth='xs' component='main'  style={{position : "relative"}}>
-        <LinkButton link='/product/addproduct/' value='add new Product'/>
+        <LinkButton link='/product/createproduct/' value='add new Product'/>
         <DropDownInput values={category.list_load_successful && category.list_data.results} keyname='id' value='name' onChange={categoryOnChange} label='category' />        
         <Loading show={product.list_loading}/>
         <ConditionalDisplay condition={!(product.list_data && product.list_data.results.length)} value=':( Nothing to Show' />
-        { product.list_load_successful && 
+        { 
+            product.list_load_successful && 
             <>
-            <ShowList results={product.list_data.results} selectedProductCallback={selectedProductCallback} secondaryActionIcon={secondaryActionIcon} autofocus={autofocus} />
+            <ShowList 
+                results={product.list_data.results} 
+                selectedProductCallback={selectedProductCallback} 
+                secondaryActionIcon={secondaryActionIcon} 
+                autofocus={autofocus} 
+            />
             <Pagination prev={product.list_data.previous} next={product.list_data.next} />
             </>
         }

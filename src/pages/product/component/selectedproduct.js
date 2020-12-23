@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from "react"
-import {List,ListItem,Divider,ListItemText,ListItemAvatar,Avatar,Typography,ListItemSecondaryAction,Paper, Button, Input, TextField, Container} from '@material-ui/core'
-import {EditIcon,ExpandMoreOutlined} from '@material-ui/icons'
+import { Avatar, Container, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, TextField, Typography } from '@material-ui/core';
+import { ExpandMoreOutlined } from '@material-ui/icons';
+import React from "react";
 
 export  function SelectedProduct({selectedProduct,onClick}){
     function onclick(e){
@@ -13,10 +13,10 @@ export  function SelectedProduct({selectedProduct,onClick}){
             <List disablePadding dense style={{border:'#c3c3c3 1px solid',borderRadius:"5px",marginTop:"10px"}}>
                 <ListItem alignItems="flex-start" id={selectedProduct.id} onClick={onclick} >
                     <ListItemAvatar>
-                    <Avatar variant='rounded' sizes='400px' alt="Remy Sharp" src={selectedProduct.productimg} />
+                    <Avatar variant='rounded' sizes='400px' alt="Remy Sharp" src={selectedProduct.productimg || selectedProduct.product_img} />
                     </ListItemAvatar>
                     <ListItemText
-                    primary={selectedProduct.name}
+                    primary={selectedProduct.name || selectedProduct.product_name}
                     secondary={
                         <Typography
                             component="span"

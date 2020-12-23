@@ -1,8 +1,9 @@
-import {useRouteMatch,Route,Switch} from "react-router-dom"
 import React from "react"
-import {ListInventory} from './listinventory'
-import {InventoryContext} from "../../redux/inventory/inventory"
-import {CreateInventory} from './createinventory'
+import { Route, Switch, useRouteMatch } from "react-router-dom"
+import { InventoryContext } from "../../redux/inventory/inventory"
+import { CreateInventory } from './createinventory'
+import { EditInventory } from './editinventory'
+import { ListInventory } from './listinventory'
 export function Inventory(){
     const {path,url}=useRouteMatch()
     return(
@@ -13,6 +14,9 @@ export function Inventory(){
                     </Route> 
                     <Route exact path={`${path}/addinventory`}>
                         <CreateInventory/>
+                    </Route>  
+                    <Route exact path={`${path}/editinventory/:id`}>
+                        <EditInventory/>
                     </Route>               
                 </Switch>             
             </InventoryContext>

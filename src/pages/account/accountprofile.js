@@ -1,11 +1,10 @@
-import React,{useContext,useState} from 'react'
-import {Avatar,TextField, Container,List,ListItem,ListItemAvatar,ListItemIcon,ListItemText,makeStyles, Divider,Typography, ListItemSecondaryAction, Button} from "@material-ui/core"
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import EditIcon from '@material-ui/icons/Edit';
+import { Avatar, Container, Divider, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, makeStyles, Typography } from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {Link,useHistory} from'react-router-dom'
-import {UserContext} from './../../context/usercontext'
-import {} from './../../models/users'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import React, { useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from './../../context/usercontext';
+import { } from './../../models/users';
 const useStyles = makeStyles((theme)=>({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -74,6 +73,17 @@ export default function AccountProfile(){
                     <ListItem button>
                                 <ListItemText>
                                 Inventory
+                                </ListItemText>
+                                <ListItemSecondaryAction>
+                                    <KeyboardArrowRightIcon/>
+                                </ListItemSecondaryAction>
+                    </ListItem>
+                </Link>
+                <Divider/>
+                <Link to='/product' style={{textDecoration:"none",color:"inherit"}}>
+                    <ListItem button>
+                                <ListItemText>
+                                Product
                                 </ListItemText>
                                 <ListItemSecondaryAction>
                                     <KeyboardArrowRightIcon/>

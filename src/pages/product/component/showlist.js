@@ -1,25 +1,25 @@
-import React from "react"
+import { ListItemSecondaryAction } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import { ListItemSecondaryAction } from "@material-ui/core";
-import EditIcon from '@material-ui/icons/Edit';
+import React from "react";
 export default function ShowList({results,selectedProductCallback=false, secondaryActionIcon=false,autofocus=false}){
     function onclick(e){
+        const target=e.currentTarget
         const index= e.currentTarget.getAttribute("index")
-        const actionType = e.currentTarget.getAttribute("type") 
-        selectedProductCallback && selectedProductCallback({selectedProduct:results[index],actionType:actionType})
+        const actionType = e.currentTarget.getAttribute("actionType") 
+        selectedProductCallback && selectedProductCallback({selectedProduct:results[index],actionType:actionType,target:target})
     }
     return(
         <List>
         {
         results &&
         results.map((product,i)=>(
-            <>
+            <React.Fragment key={product.id}>
             <ListItem alignItems="flex-start" id={product.id} index={i} actionType='productClick' autoFocus={autofocus==product.id} button onClick={onclick}>
                 <ListItemAvatar>
                 <Avatar variant='rounded' sizes='400px' alt="Remy Sharp" src={product.productimg} />
@@ -44,7 +44,7 @@ export default function ShowList({results,selectedProductCallback=false, seconda
             }
             </ListItem>
             <Divider/>
-            </>
+            </React.Fragment>
         ))
         }
         </List> 

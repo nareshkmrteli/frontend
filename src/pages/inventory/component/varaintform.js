@@ -1,11 +1,10 @@
-import { Button, Card, CardContent, Container, Grid,Paper} from '@material-ui/core'
-import {TextField} from 'final-form-material-ui'
-import { ConfirmationNumber } from '@material-ui/icons'
-import React from 'react'
-import {Form,Field} from 'react-final-form'
+import { Card, CardContent, Grid } from '@material-ui/core'
+import { DeleteOutline, PlaylistAdd } from '@material-ui/icons'
 import arrayMutators from 'final-form-arrays'
+import { TextField } from 'final-form-material-ui'
+import React from 'react'
+import { Field, Form } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
-import {PlaylistAdd,DeleteOutline} from '@material-ui/icons';
 export function VaraintForm({variants,setvariants,setsubmit}){
     
     function onSubmit(values){

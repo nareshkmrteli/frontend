@@ -1,12 +1,13 @@
 import { Button, Container, makeStyles } from "@material-ui/core";
 import qs from "qs";
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { inventoryAction } from "../../redux/inventory/action";
 import { useDispatch, useSelector } from "../../redux/inventory/inventory";
 import Loading from "../component/loading";
 import { Pagination } from "../component/pagination";
 import ShowList from "./component/showlist";
+
 const useStyles = makeStyles((theme)=>({
     root: {
         backgroundColor: theme.palette.background.paper,
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme)=>({
 export  function ListInventory(props){
     var  componentmounted=false
     const classes=useStyles()
+    const history=useHistory()
+    const location=useLocation()
     const inventoryDispatch = useDispatch()
     const inventory=useSelector((state)=>{
         return {
@@ -35,6 +38,13 @@ export  function ListInventory(props){
             list_data:state.list.list_data
         }
     });
+    function deleteListItem(ids){
+        inventoryDispatch({type:'LIST_REMOVE_ELEMENT',id:ids})
+        inventoryDispatch(inventoryAction.deleteInventory(ids))
+    }
+    function editInventory(inventory){
+        history.push(`${location.pathname}/editinventory/`+inventory.id,inventory)
+    }
     useEffect(() => {
         componentmounted=true
         const qss=qs.parse(document.location.search,{ignoreQueryPrefix:true});
@@ -57,8 +67,16 @@ export  function ListInventory(props){
         <br/>
         <br/>
         <Loading show={inventory.list_loading}/>
-        <ShowList list_load_successful={inventory.list_load_successful} results={inventory.list_data.results} />      
-        { inventory.list_load_successful && <Pagination prev={inventory.list_data.previous} next={inventory.list_data.next} />}
+        <ShowList 
+            list_load_successful={inventory.list_load_successful} 
+            results={inventory.list_data.results} 
+            deleteListItem={deleteListItem} 
+            editInventory={editInventory}
+        />      
+        { 
+            inventory.list_load_successful && 
+            <Pagination prev={inventory.list_data.previous} next={inventory.list_data.next} />
+        }
     </Container>
     );
 }

@@ -1,4 +1,4 @@
-import {combineReducers} from "redux"
+import { combineReducers } from "redux"
 
 const list_initial={
     list_loading:false,
@@ -30,6 +30,10 @@ export function ListInventoryReducer(state=list_initial,action){
                 list_load_successful:false
             }
             break
+        case "LIST_REMOVE_ELEMENT":
+            newstate={...state }
+            newstate.list_data.results=newstate.list_data.results.filter(ele=>ele.id!=action.id)
+
         default:
             newstate={
                 ...state
@@ -81,8 +85,50 @@ export function CreateInventoryReducer(state=create_initial,action){
     }
     return newstate
 }
+const delete_initial={
+    delete_loading:false,
+    delete_load_successful:false,
+    delete_data:false,
+    delete_data_dispatch:false
+}
+export function DeleteInventoryReducer(state=delete_initial,action){
+    var newstate=null
+    switch(action.type){
+        case "DELETE_INVENTORY":
+            newstate={
+                ...state,
+                delete_loading:true,
+                delete_load_successful:false,
+                delete_data:false,
+                delete_data_dispatch:action.data
+            }
+            break
+        case "DELETE_INVENTORY_SUCCESSFUL":
+            newstate={
+                ...state,
+                delete_loading:false,
+                delete_load_successful:true,
+                delete_data:action.data
+            }
+            break
+        case "DELETE_INVENTORY_FAIL":
+            newstate={
+                ...state,
+                delete_loading:false,
+                delete_load_successful:false
+            }
+            break
+        default:
+            newstate={
+                ...state
+            }
+        
+    }
+    return newstate
+}
 //combine reducer
 export const  inventoryReducer=combineReducers({
     'list' : ListInventoryReducer,
-    'create' : CreateInventoryReducer
+    'create' : CreateInventoryReducer,
+    'delete':DeleteInventoryReducer
 })

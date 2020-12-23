@@ -18,7 +18,7 @@ function TransitionDown(props) {
   return <Slide {...props} direction="down" />;
 }
 
-export function Snackbars({message}) {
+export function Snackbars({message,visible=true}) {
     const [open, setOpen] = React.useState(true);
     const [transition, setTransition] = React.useState(undefined);
     const handleClick = (Transition) => () => {
@@ -34,7 +34,9 @@ export function Snackbars({message}) {
   const handleClose = () => {
     setOpen(false);
   };
-
+  if(!visible)
+    return <></>
+  
   return (
     <div>
       <Snackbar

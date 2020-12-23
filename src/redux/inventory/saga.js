@@ -1,6 +1,5 @@
-import { Call } from '@material-ui/icons'
-import {call,put,takeEvery} from "redux-saga/effects"
-import {inventoryApi} from "./api"
+import { call, put, takeEvery } from "redux-saga/effects"
+import { inventoryApi } from "./api"
 function* fetchInventoryList(action){
     try{
         const data= yield call(inventoryApi.list,action.filters)
@@ -13,6 +12,7 @@ function* fetchInventoryList(action){
 }
 function* createInventory(action){
     try{
+        alert('saga')
         const data= yield call(inventoryApi.create,action.inventory)
         yield put({type:"CREATE_INVENTORY_SUCCESSFUL",data:data})
     }
@@ -21,10 +21,21 @@ function* createInventory(action){
         yield put({type:'CREATE_INVENTORY_FAIL',error:e})
     }
 }
-
+function* deleteInventory(action){
+    try{
+        console.log(action)
+        const data=yield call(inventoryApi.delete,action.id)
+        yield put({type:"DELETE_INVENTORY_SUCCESSFUL",data:data})
+    }
+    catch(e){
+        console.log(e.request)
+        yield put({type:"DELETE_INVENTORY_FAIL",error:e})
+    }
+}
 
 export function* sagaInventory() {
     yield takeEvery("GET_LIST", fetchInventoryList);
     yield takeEvery("CREATE_INVENTORY",createInventory)
+    yield takeEvery("DELETE_INVENTORY",deleteInventory)
   }
   
