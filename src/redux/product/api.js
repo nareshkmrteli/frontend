@@ -22,6 +22,16 @@ export const productApi={
         })
         return  res.data 
     },
+    update:async (data)=>{
+        const res= await axios.patch(setting.root+"/product/product/"+data.id+"/?format=json",
+            new toMultipart(data).run(),
+            {
+                headers:{
+                    'content-type': 'application/form-data'
+            }   
+        })
+        return  res.data 
+    },
     delete:async(id)=>{   
         const res=await axios.delete(setting.root+`/product/product/${id}/?format=json`)
         return res.data

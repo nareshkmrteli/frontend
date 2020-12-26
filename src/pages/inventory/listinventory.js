@@ -1,7 +1,7 @@
 import { Button, Container, makeStyles } from "@material-ui/core";
 import qs from "qs";
 import React, { useEffect } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { inventoryAction } from "../../redux/inventory/action";
 import { useDispatch, useSelector } from "../../redux/inventory/inventory";
 import Loading from "../component/loading";
@@ -30,6 +30,7 @@ export  function ListInventory(props){
     const classes=useStyles()
     const history=useHistory()
     const location=useLocation()
+    const parms=useParams()
     const inventoryDispatch = useDispatch()
     const inventory=useSelector((state)=>{
         return {
@@ -38,18 +39,20 @@ export  function ListInventory(props){
             list_data:state.list.list_data
         }
     });
+
     function deleteListItem(ids){
         inventoryDispatch({type:'LIST_REMOVE_ELEMENT',id:ids})
         inventoryDispatch(inventoryAction.deleteInventory(ids))
     }
+
     function editInventory(inventory){
         history.push(`${location.pathname}/editinventory/`+inventory.id,inventory)
     }
     useEffect(() => {
         componentmounted=true
-        const qss=qs.parse(document.location.search,{ignoreQueryPrefix:true});
+        const qss=qs.parse(document.location.search.replace('format=json','').replace('&&',''),{ignoreQueryPrefix:true});
         inventoryDispatch(inventoryAction.getInventoryList(qss))   
-    }, [componentmounted])
+    }, [parms])
     
     return(
     <Container maxWidth='xs' component='main'  style={{position:"relative"}} className={classes.customborder}>

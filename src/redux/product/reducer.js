@@ -89,6 +89,49 @@ export function CreateProductReducer(state=create_initial,action){
     }
     return newstate
 }
+
+const update_initial={
+    update_loading:false,
+    update_load_successful:false,
+    update_data:false,
+    update_data_dispatch:false
+}
+// productupdate reducer
+export function UpdateProductReducer(state=update_initial,action){
+    var newstate=null
+    switch(action.type){
+        case "UPDATE_PRODUCT":
+            newstate={
+                ...state,
+                update_loading:true,
+                update_load_successful:false,
+                update_data:false,
+                update_data_dispatch:action.data
+            }
+            break
+        case "UPDATE_PRODUCT_SUCCESSFUL":
+            newstate={
+                ...state,
+                update_loading:false,
+                update_load_successful:true,
+                update_data:action.data
+            }
+            break
+        case "UPDATE_PRODUCT_FAIL":
+            newstate={
+                ...state,
+                update_loading:false,
+                update_load_successful:false
+            }
+            break
+        default:
+            newstate={
+                ...state
+            }
+        
+    }
+    return newstate
+}
 const delete_initial={
     delete_loading:false,
     delete_load_successful:false,
@@ -133,5 +176,6 @@ export function DeleteProductReducer(state=delete_initial,action){
 export const  productReducer=combineReducers({
     'list' : ListProductReducer,
     'create':CreateProductReducer,
+    'update':UpdateProductReducer,
     'delete':DeleteProductReducer
 })

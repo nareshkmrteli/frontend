@@ -1,5 +1,4 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { toMultipart } from '../../utility';
 import { productApi } from "./api";
 
 
@@ -15,8 +14,6 @@ function* fetchProductList(action){
 }
 
 function* createProduct(action){
-    console.log(window.my=new toMultipart(action.product))
-
     try{
        const data= yield call(productApi.create,action.product)
         yield put({type:"CREATE_PRODUCT_SUCCESSFUL",data:data})
@@ -24,6 +21,16 @@ function* createProduct(action){
     catch(e){
         console.log(e)
         yield put({type:'CREATE_PRODUCT_FAIL',error:e})
+    }
+}
+function* updateProduct(action){
+    try{
+       const data= yield call(productApi.update,action.product)
+        yield put({type:"UPDATE_PRODUCT_SUCCESSFUL",data:data})
+    }
+    catch(e){
+        console.log(e)
+        yield put({type:'UPDATE_PRODUCT_FAIL',error:e})
     }
 }
 function* deleteProduct(action){
@@ -41,5 +48,6 @@ function* deleteProduct(action){
 export function* sagaProduct() {
     yield takeEvery("GET_LIST", fetchProductList);
     yield takeEvery("CREATE_PRODUCT",createProduct)
+    yield takeEvery("UPDATE_PRODUCT",updateProduct)
     yield takeEvery("DELETE_PRODUCT",deleteProduct)
   }

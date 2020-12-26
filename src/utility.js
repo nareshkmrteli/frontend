@@ -3,12 +3,19 @@ export function toMultipart(obj){
     this.counter=0;
     this.formdata=new FormData();
     this.replacer=(key,value)=>{
+        if(value==undefined)
+            return value
+            
         if(value.toString().search('FileList')!=-1){
+            let files=[]
             for(var i=0;i<value.length;i++){
-                const file_id='file_id_'+this.counter++;
-                this.formdata.append(file_id,value[i])
-                return file_id
+                files.push(value[i])
             }
+            return files
+        }else if(value.toString().search('File')!=-1){
+            const file_id='file_id_'+this.counter++;
+            this.formdata.append(file_id,value)
+            return file_id
         }
         return value
     }

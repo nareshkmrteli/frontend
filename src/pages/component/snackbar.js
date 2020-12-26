@@ -19,32 +19,20 @@ function TransitionDown(props) {
 }
 
 export function Snackbars({message,visible=true}) {
-    const [open, setOpen] = React.useState(true);
-    const [transition, setTransition] = React.useState(undefined);
-    const handleClick = (Transition) => () => {
-      setTransition(() => Transition);
-      setOpen(true);
-    };
+    const [open, setOpen] = React.useState(false);
     useEffect(() => {
-        setTimeout(()=>setOpen(false),3000)
-        setTimeout(()=>handleClick(TransitionDown),500)
-    }, [message])
-
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  if(!visible)
-    return <></>
-  
+      setOpen(visible)
+    }, [visible])
+    
   return (
     <div>
       <Snackbar
         open={open}
-        onClose={handleClose}
-        TransitionComponent={transition}
+        autoHideDuration={2000}
+        onClose={()=>{setOpen(false)}}
         message={message}
-        key={transition ? transition.name : ''}
+        TransitionComponent={TransitionDown}
+        key={message}
       />
     </div>
   );

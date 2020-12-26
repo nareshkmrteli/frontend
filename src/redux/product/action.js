@@ -14,6 +14,13 @@ export const productAction={
             //filter must an object this will append to url as query parameters
         }
     },
+    updateProduct:(product)=>{
+        return {
+            type:"UPDATE_PRODUCT",
+            product:product            
+            //filter must an object this will append to url as query parameters
+        }
+    },
     deleteProduct:(id)=>{
         return {
             type: 'DELETE_PRODUCT',
