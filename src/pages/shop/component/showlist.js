@@ -7,38 +7,38 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import React from "react";
-export default function ShowList({results,selectedProductCallback=false, secondaryActionIcon=false,autofocus=false}){
+export  function ShowList({results,selectedShopCallback=false, secondaryActionIcon=false,autofocus=false}){
     function onclick(e){
         const target=e.currentTarget
         const index= e.currentTarget.getAttribute("index")
         const actionType = e.currentTarget.getAttribute("actionType") 
-        selectedProductCallback && selectedProductCallback({selectedProduct:results[index],actionType:actionType,target:target})
+        selectedShopCallback && selectedShopCallback({selectedShop:results[index],actionType:actionType,target:target})
     }
     return(
         <List>
         {
         results &&
-        results.map((product,i)=>(
-            <React.Fragment key={product.id}>
-            <ListItem alignItems="flex-start" id={product.id} index={i} actionType='productClick' autoFocus={autofocus===product.id} button onClick={onclick}>
+        results.map((shop,i)=>(
+            <React.Fragment key={shop.id}>
+            <ListItem alignItems="flex-start" id={shop.id} index={i} actionType='shopClick' autoFocus={autofocus===shop.id} button onClick={onclick}>
                 <ListItemAvatar>
-                <Avatar variant='rounded' sizes='400px' alt="Remy Sharp" src={product.productimg} />
+                <Avatar variant='rounded' sizes='400px' alt="Remy Sharp" src={shop.image} />
                 </ListItemAvatar>
                 <ListItemText
-                primary={product.name}
+                primary={shop.name}
                 secondary={
                     <Typography
                         component="span"
                         variant="body2"
                         color="textPrimary"
                     >
-                    {product.description}
+                    {shop.description}
                     </Typography>
                 }
                 />
             {  
             secondaryActionIcon && 
-            <ListItemSecondaryAction id={product.id} index={i} actionType='SecondaryAction' onClick={onclick}>
+            <ListItemSecondaryAction id={shop.id} index={i} actionType='SecondaryAction' onClick={onclick}>
                 {secondaryActionIcon}
             </ListItemSecondaryAction>
             }

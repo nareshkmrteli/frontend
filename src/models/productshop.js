@@ -1,15 +1,18 @@
 import axios from "axios";
 import qs from "qs";
 import setting from 'setting';
-export async function AddressModel(props){
 
+export async function ProductShopModel(props){
+    
     const source=axios.CancelToken.source();
     const config={
-        baseURL:setting.root+'/address/',
+        baseURL:setting.root+'/shop/productshop/?format=json',
         CancelToken:source.token,
-        parms:"format=json"
     }
-    switch(props.url){
+    if(props.params)
+        config['params']=props.params
+        
+    switch(props.action){
         case 'list':
             config.url='';
             config.method='GET';
@@ -20,20 +23,22 @@ export async function AddressModel(props){
             config.data=qs.stringify(props.data)
             break;
         case 'delete':
-            config.url=''+props.data.id;
+            config.url=''+props.id;
             config.method='DELETE'
             config.data=qs.stringify(props.data)
             break;
         case 'update':
-            config.url=''+props.data.id+'/';
+            config.url=''+props.id+'/';
             config.method='PUT'
             config.data=qs.stringify(props.data)
             break;
             
     }
-    await axios(config).then((res)=>{
-            props.callback(res.data.data,res.data.status)
-    }).catch((e)=>{
-            alert(":( please Check Internet Connection")
-    })
+    try{
+        const res=await axios(config)
+            props.callback(res.data,res.status)
+    }catch(e){
+        console.log(e)
+         //props.callback(e.request,e)
+    }
 }

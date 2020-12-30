@@ -78,7 +78,7 @@ export function FormProduct({edit=false,intial}){
                     <Card>
                     <CardContent>
                     <Field name='id' hidden component='input' />
-                    <Field name='category' options={(category.list_data && [{},...category.list_data.results]) ||[{}]} >
+                    <Field name='category' options={(category.list_data && [{},...category.list_data]) ||[{}]} >
                         {({input,meta,options})=>(
                             <FormControl required fullWidth placeholder={input.name}>
                             <InputLabel htmlFor="category-native">{input.name}</InputLabel>
@@ -148,6 +148,7 @@ export function FormProduct({edit=false,intial}){
                     <Button type='submit' variant='outlined' fullWidth color='primary' disabled={disabledButton}>
                         {edit?'Update Product':'Add Product'}
                     </Button>
+                    
                 </form>      
                 <Snackbars message={ (create.create_load_successful ?`Product ${edit?'updated':'added'} Successfully`: `Product ${edit?'updation':'addition'} fail`) } visible={create.create_load_successful} />      
                 </Container>

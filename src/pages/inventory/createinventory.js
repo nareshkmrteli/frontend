@@ -47,7 +47,7 @@ export function CreateInventory(props){
         <>
         <br/>
         <Container>
-            <Alert severity='info' variant='outlined'  fullWidth>
+            <Alert severity='info' variant='outlined'>
                 Select a product to add in inventory
             </Alert>
         </Container>

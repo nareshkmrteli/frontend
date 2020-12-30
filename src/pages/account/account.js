@@ -1,13 +1,13 @@
-import React from "react"
-import RecoverPassword from './recoverpassword'
-import AccountProfile from "./accountprofile"
-import SetNewPassword from './setnewpassword'
+import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import AccountProfile from "./accountprofile";
+import RecoverPassword from './recoverpassword';
+import SetNewPassword from './setnewpassword';
 import SignIn from './signin';
-import SignUp from './signup'
-import VerificationCode from './verificationcode'
-import Signout from './signout'
+import Signout from './signout';
+import SignUp from './signup';
+import VerificationCode from './verificationcode';
 
-import {useRouteMatch,Route,Switch} from "react-router-dom"
 export function Account(){
     const {path,url}=useRouteMatch()
     return(

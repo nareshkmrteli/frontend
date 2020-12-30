@@ -1,10 +1,10 @@
-import React,{useContext} from 'react'
-import {Provider,createDispatchHook,createSelectorHook,createStoreHook} from "react-redux"
-import {createStore,applyMiddleware} from "redux"
-import createSagaMiddleware from "redux-saga"
-import {categoryReducer} from './reducer'
-import {sagaCategory} from "./saga"
+import React from 'react'
+import { createDispatchHook, createSelectorHook, createStoreHook, Provider } from "react-redux"
+import { applyMiddleware, createStore } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
+import createSagaMiddleware from "redux-saga"
+import { categoryReducer } from './reducer'
+import { sagaCategory } from "./saga"
 
 export const categoryContext = React.createContext({
     loading:true

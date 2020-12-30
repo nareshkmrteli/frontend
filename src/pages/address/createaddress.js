@@ -1,33 +1,11 @@
-import {Container,Grid,TextField,Button, Input, InputBase, FormGroup, Box, makeStyles, InputLabel, FormHelperText, FormControl, OutlinedInput} from "@material-ui/core"
-import { BorderAllRounded } from "@material-ui/icons"
+import { Button, Container, Grid, TextField } from "@material-ui/core"
 import { Alert, AlertTitle } from "@material-ui/lab"
-import React,{ useState } from "react"
-import {useHistory} from 'react-router-dom'
-import {AddressModel} from 'models/address' 
-const useStyles=makeStyles((theme)=>({
-    form:{
-        border:"1px #aaa solid",
-        marginBottom:"5px",
-        borderRadius:"7px",
-        margin:"20px 0px 10px 0"
-
-    },
-    input:{
-        padding:"2px 2px 2px 13px",
-    },
-    inputFocused:{
-        boxShadow:"0 0 5px 0 red",
-    },
-    hr:{
-        margin:"0px",
-        borderWidth:'1px',
-        borderColor:"#fff"
-    } 
-}))
+import { AddressModel } from 'models/address'
+import React, { useState } from "react"
+import { useHistory } from 'react-router-dom'
 
 export function CreateAddress(props){
-    const classes=useStyles()
-    const [data, setData] = useState({village:'',pincode:'',latitude:0,longitude:0})
+    const [data] = useState({village:'',pincode:'',latitude:0,longitude:0})
     const [error, setError] = useState({village:false,pincode:false,latitude:false,longitude:false})
     const [errorMessage, setErrorMessage] = useState({village:'',pincode:'',latitude:'',longitude:''})
     const [submitButtonActive, setsubmitButtonActive] = useState(false)

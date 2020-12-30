@@ -2,18 +2,6 @@ import Slide from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import React, { useEffect } from 'react';
 
-function TransitionLeft(props) {
-  return <Slide {...props} direction="left" />;
-}
-
-function TransitionUp(props) {
-  return <Slide {...props} direction="up" />;
-}
-
-function TransitionRight(props) {
-  return <Slide {...props} direction="right" />;
-}
-
 function TransitionDown(props) {
   return <Slide {...props} direction="down" />;
 }

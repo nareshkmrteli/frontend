@@ -7,7 +7,7 @@ function* fetchInventoryList(action){
     }
     catch(e){
         console.log(e)
-        yield put({type:'LIST_LOAD_FAIL',error:e})
+        yield put({type:'LIST_LOAD_FAIL',error:e.request.status})
     }
 }
 function* createInventory(action){

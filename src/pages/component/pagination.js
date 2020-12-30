@@ -7,9 +7,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 export function Pagination({prev,next}){
     const location=useLocation()
     const history=useHistory()
-    console.log(location,next)
-    prev=prev && location.pathname+'?'+prev.split('?')[1].replace('format=json','').replace('&&','')    
-    next=next && location.pathname+'?'+next.split('?')[1].replace('format=json','').replace('&&','')    
+    prev=prev && location.pathname+'?'+prev.split('?')[1].replace('&&','').replace('format=json','')    
+    next=next && location.pathname+'?'+next.split('?')[1].replace('&&','').replace('format=json','')  
     return(
         <>
         {   (prev || next) &&

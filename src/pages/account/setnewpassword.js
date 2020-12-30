@@ -1,34 +1,25 @@
-import React,{useState} from 'react';
+import { Grow } from "@material-ui/core";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Route,Link } from 'react-router-dom';
-import Alert from '@material-ui/lab/Alert'
-import AlertTitle from '@material-ui/lab/AlertTitle'
-import {Grow} from "@material-ui/core"
-import {setNewPassword} from "./../../models/users"
-import {useHistory} from 'react-router-dom/'
-
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+import clsx from 'clsx';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom/';
+import { setNewPassword } from "./../../models/users";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -72,12 +63,12 @@ function handleClickShowPassword (){
     setShowPassword(!showPassword);
   };
   function submitCallack(res,status){
-    if(status==200){
+    if(status===200){
       console.log(res)
       setAlertboxShow(true)
       setAlertbox({severity:'success',title:"Sucess",message:'Password Change Successfuly '})
       //history.push('/account')
-    }else if(status==404){
+    }else if(status===404){
       setError({
         password:true});
       setErrorMessage({

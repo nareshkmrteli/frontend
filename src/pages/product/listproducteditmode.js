@@ -29,6 +29,7 @@ export  function ListProductEditMode(props){
             <ListProduct 
             selectedProductCallback={selectedProductCallback} 
             secondaryActionIcon={<DeleteOutline/>}
+            edit={true}
             />
         </>
     );

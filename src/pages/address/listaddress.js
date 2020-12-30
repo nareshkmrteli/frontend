@@ -1,9 +1,7 @@
-import React,{useState,useEffect} from "react"
-import {Card, CardActionArea, CardContent, Container, Typography,CardActions, Button, ButtonBase,makeStyles} from '@material-ui/core'
-import {AddressModel} from 'models/address'
-import { AddRounded,DeleteForeverOutlined } from "@material-ui/icons"
-import {CreateAddress} from './createaddress'
-import {Link,useHistory} from 'react-router-dom'
+import { Button, ButtonBase, Card, CardActionArea, CardActions, CardContent, Container, makeStyles, Typography } from '@material-ui/core'
+import { AddressModel } from 'models/address'
+import React, { useEffect, useState } from "react"
+import { Link, useHistory } from 'react-router-dom'
 const useStyles=makeStyles((theme)=>({
     customCard:{
         boxShadow:"#d6d6d6 0px 0px 1px 1px",
@@ -24,7 +22,7 @@ export function ListAddress(){
         AddressModel({url:'list',callback:callback})
     }
     function callback(res,status){
-        if(status==200){
+        if(status===200){
             setLoading(false)
             setData(res)
             
@@ -39,7 +37,7 @@ export function ListAddress(){
         AddressModel({url:'delete',callback:addressDeleteCallback,data:{id:addressid}})
     }
     function addressDeleteCallback(res,status){
-        if(status==200){
+        if(status===200){
             const copydata=[...data];
             const newdata=copydata.filter(function(address){
                 if(address.id==res.addressid)
@@ -49,6 +47,8 @@ export function ListAddress(){
             });
             setData(newdata)
 
+        }else if(status==409){
+            alert('This address Is protected you can\'t delete')
         }
     }
     

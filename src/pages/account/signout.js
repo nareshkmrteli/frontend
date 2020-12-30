@@ -1,6 +1,6 @@
-import {GetUserContext} from './../../context/usercontext'
-import {signout} from './../../models/users'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { GetUserContext } from './../../context/usercontext';
+import { signout } from './../../models/users';
 export default function Signout(){
     const usercontext=GetUserContext();
     const history=useHistory()

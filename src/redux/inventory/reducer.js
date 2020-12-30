@@ -3,7 +3,8 @@ import { combineReducers } from "redux"
 const list_initial={
     list_loading:false,
     list_load_successful:false,
-    list_data:false
+    list_data:false,
+    list_error_code:false
 }
 export function ListInventoryReducer(state=list_initial,action){
     var newstate=null
@@ -12,7 +13,8 @@ export function ListInventoryReducer(state=list_initial,action){
             newstate={
                 ...state,
                 list_loading:true,
-                list_load_successful:false
+                list_load_successful:false,
+                list_error_code:false
             }
             break
         case "LIST_LOAD_SUCCESSFUL":
@@ -27,7 +29,8 @@ export function ListInventoryReducer(state=list_initial,action){
             newstate={
                 ...state,
                 list_loading:false,
-                list_load_successful:false
+                list_load_successful:false,
+                list_error_code:action.error
             }
             break
         case "LIST_REMOVE_ELEMENT":
@@ -38,6 +41,7 @@ export function ListInventoryReducer(state=list_initial,action){
             newstate={
                 ...state
             }
+            break;
         
     }
     return newstate

@@ -1,14 +1,12 @@
 import { Button, Container } from '@material-ui/core'
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import setting from "../../setting"
 import { Snackbars } from '../component/snackbar'
 import { SelectedProduct } from "../product/component/selectedproduct"
 import { VaraintForm } from "./component/varaintform"
 export function  EditInventory(props){
-    const {id}=useParams()
-    const history=useHistory()
     const location=useLocation()
     const inventory=location.state
     const setsubmit=React.useRef()

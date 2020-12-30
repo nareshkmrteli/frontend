@@ -2,9 +2,8 @@
 either an array or array of object then should pass keyname and value the value will pass to onChange field
 
 */
+import { FormControl, InputLabel, Select } from "@material-ui/core"
 import React from 'react'
-import {Link} from "react-router-dom"
-import {FormControl,InputLabel,Select} from "@material-ui/core"
 export function DropDownInput({label,values,onChange,keyname,value}){
     const callback=(e)=>{
         const value =e.target.value

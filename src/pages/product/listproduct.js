@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme)=>({
  
 }));
 
-export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=false,autofocus=false}){
+export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=false,autofocus=false,edit=false}){
     var  componentmounted=false
     const classes=useStyles()
     const productDispatch = useDispatch()
@@ -52,8 +52,11 @@ export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=
     }
     return(
     <Container maxWidth='xs' component='main'  style={{position : "relative"}}>
-        <LinkButton link='/product/createproduct/' value='add new Product'/>
-        <DropDownInput values={category.list_load_successful && category.list_data.results} keyname='id' value='name' onChange={categoryOnChange} label='category' />        
+        {   
+            <LinkButton link='/product/createproduct/' value='add new Product'/>
+        }
+        <br/>
+        <DropDownInput values={category.list_load_successful && category.list_data} keyname='id' value='name' onChange={categoryOnChange} label='category' />        
         <Loading show={product.list_loading}/>
         <ConditionalDisplay condition={!(product.list_data && product.list_data.results.length)} value=':( Nothing to Show' />
         { 
@@ -66,6 +69,9 @@ export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=
                 autofocus={autofocus} 
             />
             <Pagination prev={product.list_data.previous} next={product.list_data.next} />
+            <br/>
+            <br/>
+            <br/>
             </>
         }
     </Container>

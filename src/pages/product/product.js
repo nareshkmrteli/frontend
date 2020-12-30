@@ -10,15 +10,16 @@ export function Product(){
     const {search}=useLocation()
     return(
                 <Switch>
-                    <Route exact path={path}>
-                        <ListProduct/>
-                    </Route> 
+                    <Route exact path={path}
+                    render={()=>
+                        <ListProduct key={search} />} 
+                    />                            
                     <Route exact path={`${path}/createproduct`}>
                         <CreateProduct/>
                     </Route> 
                     <Route exact path={`${path}/listproducteditmode`}
-                        render={
-                        <ListProductEditMode key={search} />}
+                        render={()=>
+                        <ListProductEditMode key={search} />} 
                     />      
                     <Route exact path={`${path}/editproduct/:id`}>
                         <EditProduct/>
