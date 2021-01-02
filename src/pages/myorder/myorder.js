@@ -10,7 +10,7 @@ export function MyOrder(){
                     <CartContext>
                     <Route exact path={path}
                     render={()=>
-                        <ListMyOrder/>} 
+                        <ListMyOrder key={document.location.search}/>} 
                     />           
                     </CartContext>                    
                 </Switch>             

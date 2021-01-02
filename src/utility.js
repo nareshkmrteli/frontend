@@ -43,8 +43,10 @@ export function Url(url){
         if(a.length >1){
             let b=a[1].split('&')
             b.forEach(e => {
-                const [c,d]=e.split('=')
-                this.search[c]=d
+                if(e!=''){
+                    const [c,d]=e.split('=')
+                    this.search[c]=d
+                }
             });
         }
     }
@@ -68,9 +70,10 @@ export function Url(url){
         for(let i in this.search){
             s+=i+'='+this.search[i]+'&'
         }
+        s=s.slice(0,-1)
         if(this.hash)
             s+=this.hash
-        return this.path+s
-
+        return this.path+'?'+s
+        
     }
 }

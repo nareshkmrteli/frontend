@@ -4,15 +4,16 @@ import setting from 'setting';
 export async function OrderModel(props){
     const source=axios.CancelToken.source();
     const config={
-        baseURL:setting.root+'/order/order/?format=json',
+        baseURL:setting.root+'/order/order/',
         headers:{
             'content-type': 'application/json'
         },
         CancelToken:source.token,
+        params:{}
     }
     if(props.params)
         config['params']=props.params
-        
+    config['params']['format']='json'
     switch(props.action){
         case 'list':
             config.url='';
@@ -24,7 +25,7 @@ export async function OrderModel(props){
             config.data=JSON.stringify(props.data)
             break;
         case 'delete':
-            config.url=''+props.id;
+            config.url=''+props.id+'/';
             config.method='DELETE'
             config.data=JSON.stringify(props.data)
             break;
@@ -45,6 +46,6 @@ export async function OrderModel(props){
             props.callback(res.data,res.status)
     }catch(e){
         console.log(e)
-         //props.callback(e.request,e)
+         props.callback(e.request,e.request.status)
     }
 }
