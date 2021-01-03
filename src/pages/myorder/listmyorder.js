@@ -1,4 +1,5 @@
 import { Dialog, DialogActions, DialogContent } from '@material-ui/core';
+import { ConditionalDisplay } from 'pages/component/condtionaldisplay';
 import { Pagination } from 'pages/component/pagination';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -44,7 +45,7 @@ export function ListMyOrder(props){
     }
     return(
         <>
-
+        <ConditionalDisplay condition={data && data.results.length==0}  value='You have no order' />
         <MyOrderList results={data && data.results} cancelOrder={(d)=>{setCancelOrderObject(d)}} />
         <Pagination prev={data && data.previous} next={data && data.next}/>
         <Dialog open={!!cancelOrderObject} onClose={()=>setCancelOrderObject(false)}>

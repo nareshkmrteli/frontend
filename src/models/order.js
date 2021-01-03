@@ -38,14 +38,23 @@ export async function OrderModel(props){
             config.url=''+props.id+'/changestatus/';
             config.method='POST'
             config.data=JSON.stringify(props.data)
-            
-            
+            break;
+        case 'listshoporder':
+            config.url='/listshoporder/';
+            config.method='GET'
+            break;
+        case 'detailorder':
+            config.url='/'+props.id+'/detailorder/';
+            config.method='GET'
+            break;        
+        
     }
     try{
         const res=await axios(config)
+            console.log(res)
             props.callback(res.data,res.status)
     }catch(e){
         console.log(e)
-         props.callback(e.request,e.request.status)
+         //props.callback(e.request,e.request.status)
     }
 }

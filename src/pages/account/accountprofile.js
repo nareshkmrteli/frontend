@@ -91,6 +91,17 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>
                 <Divider/>
+                <Link to='/shoporder' style={{textDecoration:"none",color:"inherit"}}>
+                    <ListItem button>
+                                <ListItemText>
+                                Shop Order
+                                </ListItemText>
+                                <ListItemSecondaryAction>
+                                    <KeyboardArrowRightIcon/>
+                                </ListItemSecondaryAction>
+                    </ListItem>
+                </Link>
+                <Divider/>
                 <Link to='/myorder' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
