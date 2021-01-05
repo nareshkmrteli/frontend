@@ -2,7 +2,6 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { makeStyles } from '@material-ui/core/styles';
 import { AccountCircle, Storefront } from '@material-ui/icons';
-import RestoreIcon from '@material-ui/icons/Restore';
 import React from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -30,14 +29,13 @@ export default function AppBottomNavigation() {
       }}
       value={value}
       onChange={(event, newValue) => {
-        const links=['recents','shop','account']
+        const links=['shop','account']
         setValue(newValue);
         history.push('/'+links[newValue])
       }}
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction  label="Recents" name='recents' icon={<RestoreIcon />} />
       <BottomNavigationAction label="StroreFront" name='shop' icon={<Storefront />} />
       <BottomNavigationAction label="Account" name='account' icon={<AccountCircle/>} />
     </BottomNavigation>

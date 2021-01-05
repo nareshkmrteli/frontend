@@ -72,16 +72,16 @@ function DetailOrderList({results,orderStatusUpdate=null,orderCancel=null}){
         <br/><br/>
         {
             results.status != 5 &&
-            <Grid container spacing={2}>
-            <Grid xs={6}>
+            <Grid container spacing={1  }>
+            <Grid item xs={6}>
                 <FormControl fullWidth size='small'>
                 <InputLabel htmlFor='order-status-id' style={{margin:'-7px 0px 0px 10px'}}>Order Status</InputLabel>
-                <Select value={results.status} native fullWidth id='order-status-id' variant='outlined' label='order status' onChange={(e)=>orderStatusUpdate(e.currentTarget.value)}>
+                <Select value={results.status} native inputProps={{style:{height:'1em'}}} fullWidth id='order-status-id' variant='outlined' label='order status' onChange={(e)=>orderStatusUpdate(e.currentTarget.value)}>
                     <StatusOptions/>
                 </Select>
                 </FormControl>
             </Grid>
-            <Grid xs={6}>
+            <Grid item xs={65}>
                 <Button fullWidth color='secondary' variant='outlined' onClick={orderCancel}>
                     Cancel Order
                 </Button>

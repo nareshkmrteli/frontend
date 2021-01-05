@@ -1,10 +1,10 @@
+import { Typography } from '@material-ui/core'
 import React from 'react'
-import {Typography} from '@material-ui/core'
-export default function Loading({show}){
+export default function Loading({show,top=0}){
     return(
         <>
         {show &&
-        <Typography variant='body1' align='center'>
+        <Typography variant='body1' style={{marginTop:top+'px'}} align='center'>
              Loading ...
         </Typography>
         }

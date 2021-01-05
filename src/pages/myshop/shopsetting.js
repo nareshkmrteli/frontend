@@ -6,9 +6,9 @@ import { AddressModel } from 'models/address';
 import React, { useEffect, useState } from 'react';
 import { Field, Form } from 'react-final-form';
 import { toMultipart } from 'utility';
-import { ShowImage } from '../component/showimage';
-import setting from '../setting';
-import { Snackbars } from './component/snackbar';
+import { ShowImage } from '../../component/showimage';
+import setting from '../../setting';
+import { Snackbars } from '../component/snackbar';
 
 // api end point regard the shop setting
 async function ShopSettingAxios(action,data,callback){
@@ -82,7 +82,7 @@ export function ShopSetting(){
             {},
             (data)=>{
                 const s=data.shopsetting && data.shopsetting[0]
-                s && setShopData({id:s.id,name:s.name,preorderdays:s.preorderdays,active:s.active,address:s.address,image:s.image})
+                s && setShopData({id:s.id,name:s.name,preorderdays:s.preorderdays,level:s.level,active:s.active,address:s.address,image:s.image})
                 setOptions([{},...data.address])
                 console.log(data)
             }
@@ -106,6 +106,8 @@ export function ShopSetting(){
                 'create',
                 values,
                 (data)=>{
+                    if(values.level!=null)
+                    window.localStorage.setItem('level',values.level)
                     setSnackbarData({message:'Shop Setting Saved',visible:true})
                 }                
             )
@@ -114,6 +116,8 @@ export function ShopSetting(){
                 'update',
                 values,
                 (data)=>{
+                    if(values.level!=null)
+                    window.localStorage.setItem('level',values.level)
                     setSnackbarData({message:'Shop Setting Saved',visible:true})
                 }                
             )
@@ -139,7 +143,7 @@ export function ShopSetting(){
                             <>
                             <Avatar src={input.value} variant='square' component='span' onClick={()=>document.getElementById('shopimage').click()}>
                                 {   
-                                    input.value && <ShowImage file={input.value} /> || <ImageOutlined/>
+                                    (input.value && <ShowImage file={input.value} />) || <ImageOutlined/>
                                 }
                             </Avatar>
                             <input id='shopimage' onChange={(e)=>input.onChange(e.target.files && e.target.files[0])} hidden type='file' value=''  name='image' />
@@ -163,8 +167,7 @@ export function ShopSetting(){
                                     <Grid xs={2}>
                                         <Switch 
                                             name={input.name}
-                                            value={input.value}
-                                            checked={input.value}
+                                            checked={input.checked}
                                             onChange={input.onChange}
                                         />
                                     </Grid>
@@ -186,6 +189,19 @@ export function ShopSetting(){
                                         {
                                             options.map((item)=>(
                                                 <option value={item.id}>{item.village}</option>
+                                            ))
+                                        }
+                                    </Select>
+                                )
+                            }
+                        </Field>
+                        <Field name='level' fullWidth options={[{id:1,key:'buyer'},{id:2,key:'distributer'},{id:3,key:'farmer'}]}>
+                            {
+                                ({input,meta,options})=>(
+                                    <Select value={input.value} placeholder='I am a ...' style={{color:values.address?'inherit':'#c2c2c2'}} required native fullWidth onChange={input.onChange} >
+                                        {
+                                            options.map((item)=>(
+                                                <option value={item.id}>{item.key}</option>
                                             ))
                                         }
                                     </Select>

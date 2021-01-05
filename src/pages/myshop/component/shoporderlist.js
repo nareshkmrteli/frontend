@@ -34,7 +34,7 @@ export  function ShopOrderList({results,selectedItemCallback=false,cancelOrder=a
             <React.Fragment key={item.id}>
             <ListItem alignItems="flex-start" id={item.id} index={i} actionType='itemClick' autoFocus={autofocus===item.id} button onClick={onclick}>
                 <ListItemAvatar>
-                <Avatar variant='rounded' sizes='400px' alt={ item.user.name} src={item.id} />
+                <Avatar variant='rounded' sizes='400px' src={item.user.image} alt={ item.user.name} />
                 </ListItemAvatar>
                 <ListItemText
                 primary={item.user.name+' / '+item.user.mobileno}

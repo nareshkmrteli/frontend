@@ -60,12 +60,17 @@ export default function SignIn() {
     e.preventDefault();
     signIn({callback:submitCallack,data:data});
   }
-
+  
   function submitCallack(res,status){
     if(status==200){
       usercontext.setIsUserLogined(true)
       window.localStorage.setItem('name',res.name)
       window.localStorage.setItem('mobileno',res.mobileno)
+      window.localStorage.setItem('image',res.image)
+      //as spec of localStorage it change to DOMstring 
+      if(res.level!=null)
+      window.localStorage.setItem('level',res.level)
+      window.localStorage.setItem('shop',res.shop)
       history.push('/account')
       
     }else if(status==400){

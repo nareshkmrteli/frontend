@@ -76,4 +76,15 @@ export function Url(url){
         return this.path+'?'+s
         
     }
+    this.getQueryParams=()=>{
+        var s=''
+        for(let i in this.search){
+            s+=i+'='+this.search[i]+'&'
+        }
+        s=s.slice(0,-1)
+        if(this.hash)
+            s+=this.hash
+        return '?'+s
+        
+    }
 }

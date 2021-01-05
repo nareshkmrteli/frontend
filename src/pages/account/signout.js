@@ -9,7 +9,8 @@ export default function Signout(){
     history.push('/account')
     function callback(res,status){
         if(status==200){
-            usercontext.setIsUserLogined(false);            
+            usercontext.setIsUserLogined(false); 
+            window.localStorage.clear();           
         }
         else{
             alert("please Check the Internet Connection, and Retry")

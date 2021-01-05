@@ -8,10 +8,10 @@ import { Account } from './pages/account/account';
 import { Address } from './pages/address/address';
 import { Inventory } from './pages/inventory/inventory';
 import { MyOrder } from './pages/myorder/myorder';
+import { MyShop } from './pages/myshop/myshop';
+import { ShopSetting } from "./pages/myshop/shopsetting";
 import { Product } from './pages/product/product';
 import { Shop } from './pages/shop/shop';
-import { ShopOrder } from './pages/shoporder/shoporder';
-import { ShopSetting } from "./pages/shopsetting";
 import { CartContext } from './redux/cart/cart';
 import { CategoryContext } from "./redux/category/category";
 import { ProductContext } from "./redux/product/product";
@@ -60,8 +60,8 @@ function App() {
           <Route  path='/myorder'>         
             <MyOrder/>
           </Route> 
-          <Route  path='/shoporder'>         
-            <ShopOrder/>
+          <Route  path='/myshop'>         
+            <MyShop/>
           </Route> 
         </Switch>
       <AppBottomNavigation/>

@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Container, TextField } from '@material-ui/core'
+import { Button, Card, CardContent, Container, makeStyles, Tab, Tabs, TextField } from '@material-ui/core'
 import axios from 'axios'
 import { Pagination } from 'pages/component/pagination'
 import React, { useEffect, useState } from 'react'
@@ -8,6 +8,17 @@ import { useDispatch, useSelector } from '../../redux/cart/cart'
 import setting from '../../setting'
 import { ConditionalDisplay } from '../component/condtionaldisplay'
 import { ShowList } from './component/showlist'
+
+const useStyle=makeStyles((theme)=>(
+    {
+        box:{
+                boxShadow:'inset 0 0 5px 1px #eee',
+                height:'5px',
+                marginTop:'10px',
+                width:'100%',
+        }
+    }
+))
 async function getShopList(props){
     const data =await axios.get(
         setting.root+'/shop/shop/?format=json',
@@ -17,7 +28,40 @@ async function getShopList(props){
         )
     props.callback(data.data)
 }
+
+function LevelFilter({level=0,setLevel=console.log}){
+    const user_level=window.localStorage.getItem('level')
+    let level_choices=[
+        'Buyer',
+        'Distributer',
+        'Farmer'
+    ]
+    level_choices=level_choices.slice(0,level_choices.length==user_level?user_level:( parseInt(user_level)+1))
+
+    if(level_choices.length<=1)
+        return ''
+    return(
+        <>
+        <Tabs
+            value={level-1}
+            variant='scrollable'
+            //index start with zero here so add 1
+            onChange={(s,newvalue)=>{setLevel(newvalue+1)}}
+            textColor='primary'
+            indicatorColor='primary'
+            style={{backgroundColor:'azure',width:'100%'}}
+        >
+            {
+                level_choices.map((i)=>(<Tab label={i}/>))
+            }
+        </Tabs>
+        </>
+    )
+}
+
 export function ListShop(props){
+    const [level, setLevel] = useState(null)
+    const classes=useStyle()
     const cartDispatch=useDispatch()
     const [selectedShop, setSelectedShop] = useState(null)
     const [open, setOpen] = useState(false)
@@ -29,6 +73,18 @@ export function ListShop(props){
     const history=useHistory()
     useEffect(() => {
         const url=new Url(document.location.href)
+        if(!level){
+            if(url.search.level)
+                setLevel(url.search.level)    
+            else
+                setLevel(window.localStorage.getItem('level'))
+        }else{
+            url.add('level',level)
+            history.push(location.pathname+url.getQueryParams())
+        }
+    }, [level]) 
+    useEffect(() => {
+        const url=new Url(document.location.href)
         search && url.add('search',search)
         getShopList({
             params: url.search,
@@ -38,8 +94,6 @@ export function ListShop(props){
             }
         })
     }, [search])
-
-
     function selectedShopCallback(e){
         if(e.actionType=='shopClick'){
             var key=false
@@ -54,8 +108,6 @@ export function ListShop(props){
             }
         }
     }
-
-    
     function continueWithPreviousShop(e){
         setOpen(false)
         var key
@@ -71,11 +123,18 @@ export function ListShop(props){
         setSelectedShop(null)
     } 
     return(
-        <Container>
+        <>
             <br/>
-            <TextField name='search' type='search' label='Search' onChangeCapture={(e)=>{setSearch(e.target.value)}} size='small' fullWidth variant='outlined' onChange={(e)=>{setSearch(e.target.value)}} />
-            <ShowList results={shoplist.results} selectedShopCallback={selectedShopCallback} />
-            <ConditionalDisplay  condition={loading} value='Loading...' />
+            <Container>
+                <TextField name='search' type='search' label='Search a shop' onChangeCapture={(e)=>{setSearch(e.target.value)}} size='small' fullWidth variant='outlined' onChange={(e)=>{setSearch(e.target.value)}} />
+            </Container>
+            <div className={classes.box}/>
+            <LevelFilter level={level} setLevel={setLevel}/>
+            <Container>   
+                <ShowList results={shoplist.results} selectedShopCallback={selectedShopCallback} />
+                <ConditionalDisplay  condition={loading} value='Loading...' />
+                <ConditionalDisplay  condition={shoplist.results && shoplist.results.length==0} value='Nothting to show' />
+            </Container>
             <Pagination prev={shoplist.previous} next={shoplist.next} />
             {
                 open &&     
@@ -98,6 +157,6 @@ export function ListShop(props){
                     </Card>
                 </Container>
             }
-        </Container>
+        </>
         )
 }
