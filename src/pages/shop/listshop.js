@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Container, makeStyles, Tab, Tabs, TextField } from '@material-ui/core'
 import axios from 'axios'
-import { Pagination } from 'pages/component/pagination'
+import { Pagination2 } from 'pages/component/pagination'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Url } from 'utility'
@@ -60,7 +60,9 @@ function LevelFilter({level=0,setLevel=console.log}){
 }
 
 export function ListShop(props){
-    const [level, setLevel] = useState(null)
+    const url=new Url(document.location.href)
+    const [queryParameter, setQueryParameter] = useState(url.search)
+    
     const classes=useStyle()
     const cartDispatch=useDispatch()
     const [selectedShop, setSelectedShop] = useState(null)
@@ -71,29 +73,21 @@ export function ListShop(props){
     const [loading, setLoading] = useState(true)
     const location=useLocation()
     const history=useHistory()
-    useEffect(() => {
-        const url=new Url(document.location.href)
-        if(!level){
-            if(url.search.level)
-                setLevel(url.search.level)    
-            else
-                setLevel(window.localStorage.getItem('level'))
-        }else{
-            url.add('level',level)
-            history.push(location.pathname+url.getQueryParams())
-        }
-    }, [level]) 
-    useEffect(() => {
-        const url=new Url(document.location.href)
-        search && url.add('search',search)
+    
+    useEffect(() => {        
+        //update url query string
+        if(!queryParameter.search) delete queryParameter.search
+        url.search=queryParameter
+        history.push(location.pathname+url.getQueryParams()) 
         getShopList({
-            params: url.search,
+            params: queryParameter,
             callback:(data)=>{
                 setShoplist(data)
                 setLoading(false)
             }
         })
-    }, [search])
+    }, [queryParameter])
+    
     function selectedShopCallback(e){
         if(e.actionType=='shopClick'){
             var key=false
@@ -126,16 +120,16 @@ export function ListShop(props){
         <>
             <br/>
             <Container>
-                <TextField name='search' type='search' label='Search a shop' onChangeCapture={(e)=>{setSearch(e.target.value)}} size='small' fullWidth variant='outlined' onChange={(e)=>{setSearch(e.target.value)}} />
+                <TextField value={queryParameter.search} name='search' type='search' label='Search a shop' onChangeCapture={(e)=>{setQueryParameter({...queryParameter,page:1,search:e.target.value})}} size='small' fullWidth variant='outlined' />
             </Container>
             <div className={classes.box}/>
-            <LevelFilter level={level} setLevel={setLevel}/>
+            <LevelFilter level={queryParameter.level} setLevel={(newlevel)=>setQueryParameter({...queryParameter,level:newlevel,page:1})}/>
             <Container>   
                 <ShowList results={shoplist.results} selectedShopCallback={selectedShopCallback} />
                 <ConditionalDisplay  condition={loading} value='Loading...' />
                 <ConditionalDisplay  condition={shoplist.results && shoplist.results.length==0} value='Nothting to show' />
             </Container>
-            <Pagination prev={shoplist.previous} next={shoplist.next} />
+            <Pagination2 prev={shoplist.previous} next={shoplist.next} page={queryParameter.page} setPage={(newpage)=>{console.log(newpage);setQueryParameter({...queryParameter,page:newpage})}} />
             {
                 open &&     
                 <Container  style={{marginLeft:'auto',marginRight:'auto',position:'fixed',left:'0',top:'0',width:'100%',height:'100%',zIndex:'100',backgroundColor:'#00000073'}}>

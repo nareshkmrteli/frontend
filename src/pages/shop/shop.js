@@ -33,7 +33,7 @@ export function Shop(){
                     <Route exact path={path}
                     render={()=>
                         <>
-                        <ListShop key={search} />
+                        <ListShop/>
                         <PlaceMyOrderLink cart={cart} path={path} />
                         </>} 
                     />     

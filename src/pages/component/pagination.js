@@ -20,3 +20,17 @@ export function Pagination({prev,next}){
         </>
     )
 }
+
+export function Pagination2({prev,next,page,setPage}){
+    return(
+        <>
+        {   (prev || next) &&
+            <Paper style={{textAlign:"right"}}>
+                {prev && <Button onClick={()=>setPage(page-1)}   size='small'><NavigateBeforeIcon /></Button>}
+                {next && <Button onClick={()=>page?setPage(page+1):setPage(2)} size='small'><NavigateNextIcon /></Button>}
+            </Paper>
+        }
+        </>
+    )
+}
+
