@@ -11,10 +11,12 @@ import { MyOrder } from './pages/myorder/myorder';
 import { MyShop } from './pages/myshop/myshop';
 import { ShopSetting } from "./pages/myshop/shopsetting";
 import { Product } from './pages/product/product';
+import { Proposal } from './pages/proposal/proposal';
 import { Shop } from './pages/shop/shop';
 import { CartContext } from './redux/cart/cart';
 import { CategoryContext } from "./redux/category/category";
 import { ProductContext } from "./redux/product/product";
+import { ProposalContext } from "./redux/proposal/proposal";
 function App() {
   const history=useHistory()
   if(window.localStorage.getItem('isUserLogined')==null)
@@ -37,6 +39,7 @@ function App() {
   <CategoryContext>
   <ProductContext>
   <CartContext>
+  <ProposalContext>
     <Container maxWidth='xs' style={{position:'relative',border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
         <Switch>
           <Route  path='/account'>         
@@ -63,10 +66,14 @@ function App() {
           <Route  path='/myshop'>         
             <MyShop/>
           </Route> 
+          <Route  path='/proposal'>         
+            <Proposal/>
+          </Route> 
         </Switch>
       <AppBottomNavigation/>
       
     </Container>
+    </ProposalContext>
     </CartContext>
   </ProductContext>
   </CategoryContext>    

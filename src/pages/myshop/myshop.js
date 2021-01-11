@@ -11,11 +11,13 @@ export function MyShop(){
                     <CartContext>
                     <Route exact path={`${path}/detailorder/:orderid`}
                     render={()=>
-                        <DetailOrder key={document.location.search}/>} 
+                        <DetailOrder key={document.location.search}/>
+                        } 
+                        
                     />            
                     <Route exact path={`${path}/shoporder`}
                     render={()=>
-                        <ListShopOrder key={document.location.search}/>} 
+                        <ListShopOrder />} 
                     />
                     </CartContext>                    
                 </Switch>             
