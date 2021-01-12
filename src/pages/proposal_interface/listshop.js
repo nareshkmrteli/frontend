@@ -4,7 +4,7 @@ import { Pagination2 } from 'pages/component/pagination'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Url } from 'utility'
-import { useDispatch, useSelector } from '../../redux/cart/cart'
+import { useDispatch, useSelector } from '../../redux/cartproposal/cart'
 import setting from '../../setting'
 import { ConditionalDisplay } from '../component/condtionaldisplay'
 import { ShowList } from './component/showlist'
@@ -21,13 +21,13 @@ const useStyle=makeStyles((theme)=>(
 ))
 async function getShopList(props){
     const data =await axios.get(
-        setting.root+'/shop/shop/?format=json',
+        setting.root+'/shop/proposal/?format=json',
         {
             params:props.params || {}
         }
         )
     props.callback(data.data)
-}
+}   
 
 function LevelFilter({level=0,setLevel=console.log}){
     const user_level=window.localStorage.getItem('level')
@@ -95,7 +95,7 @@ export function ListShop(props){
                 break
 
             if(Object.keys(cart).length==0 || (key && cart[key].shop==e.selectedShop.id) )
-                history.push('/shop/listproductshop/?shop='+e.selectedShop.id,e.selectedShop)
+                history.push('/proposalinterface/listproductproposal/?shop='+e.selectedShop.id,e.selectedShop)
             else{
                 setOpen(true)
                 setSelectedShop(e.selectedShop)
@@ -107,13 +107,13 @@ export function ListShop(props){
         var key
         for(key in cart)
             break
-        history.push('/shop/listproductshop/?shop='+cart[key].shop)
+        history.push('/proposalinterface/listproductproposal/?shop='+cart[key].shop)
         setSelectedShop(null)
     }
     function ContinewWithNewShop(e){
         setOpen(false)
         cartDispatch({type:'Default'})
-        history.push('/shop/listproductshop/?shop='+selectedShop.id,selectedShop)
+        history.push('/proposalinterface/listproductproposal/?shop='+selectedShop.id,selectedShop)
         setSelectedShop(null)
     } 
     return(

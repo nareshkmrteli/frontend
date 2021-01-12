@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } from "@material-ui/icons";
 import React from "react";
-import { useDispatch, useSelector } from '../../../redux/cart/cart';
+import { useDispatch, useSelector } from '../../../redux/cartproposal/cart';
 
 
 export  function ShowList({results,selectedShopCallback=false, secondaryActionIcon=false,autofocus=false}){

@@ -4,8 +4,8 @@ import { ConditionalDisplay } from 'pages/component/condtionaldisplay';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AddressModel } from '../../models/address';
-import { OrderModel } from '../../models/order';
-import { useDispatch, useSelector } from '../../redux/cart/cart';
+import { OrderModel } from '../../models/proposalorder';
+import { useDispatch, useSelector } from '../../redux/cartproposal/cart';
 import { ShowList } from './component/productshopshowlist';
 import { ShowAddressList } from './component/showaddresslist';
 

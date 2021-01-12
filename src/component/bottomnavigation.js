@@ -29,7 +29,7 @@ export default function AppBottomNavigation() {
       }}
       value={value}
       onChange={(event, newValue) => {
-        const links=['shop','account']
+        const links=['shop','proposalinterface','account']
         setValue(newValue);
         history.push('/'+links[newValue])
       }}
@@ -37,6 +37,7 @@ export default function AppBottomNavigation() {
       className={classes.root}
     >
       <BottomNavigationAction label="StroreFront" name='shop' icon={<Storefront />} />
+      <BottomNavigationAction label="Proposal" name='proposal' icon={<Storefront />} />
       <BottomNavigationAction label="Account" name='account' icon={<AccountCircle/>} />
     </BottomNavigation>
   );
