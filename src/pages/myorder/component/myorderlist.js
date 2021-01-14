@@ -63,7 +63,7 @@ export  function MyOrderList({results,setRating,selectedItemCallback=false,cance
                 />
             </ListItem>
             {
-                !item.rating && item.status =='5' &&
+                !item.rating && item.status =='4' &&
                 <ListItem style={{backgroundColor:'#eeeeee'}}>
                     <ListItemText
                         primary={
