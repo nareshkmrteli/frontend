@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core'
 import { Pagination } from 'pages/component/pagination'
 import React, { useEffect, useState } from 'react'
-import { ProductShopModel } from '../../models/productproposal'
+import { ProductShopModel } from '../../models/productproposal' // its copy of product component so may be look like product component
 import { useSelector } from '../../redux/cartproposal/cart'
 import { Url } from '../../utility'
 import { ShowList } from './component/productshopshowlist'

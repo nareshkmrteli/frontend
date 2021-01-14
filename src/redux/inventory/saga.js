@@ -12,7 +12,6 @@ function* fetchInventoryList(action){
 }
 function* createInventory(action){
     try{
-        alert('saga')
         const data= yield call(inventoryApi.create,action.inventory)
         yield put({type:"CREATE_INVENTORY_SUCCESSFUL",data:data})
     }

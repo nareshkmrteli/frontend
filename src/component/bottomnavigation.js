@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AccountCircle, Storefront } from '@material-ui/icons';
 import React from 'react';
 import { useHistory, useLocation } from "react-router-dom";
-
+import { ReactComponent as Proposalsvg } from '../static/proposal.svg';
 const useStyles = makeStyles({
   root: {
     width: 500,
@@ -37,7 +37,7 @@ export default function AppBottomNavigation() {
       className={classes.root}
     >
       <BottomNavigationAction label="StroreFront" name='shop' icon={<Storefront />} />
-      <BottomNavigationAction label="Proposal" name='proposal' icon={<Storefront />} />
+      <BottomNavigationAction label="Proposal" name='proposal' icon={<Proposalsvg/>} />
       <BottomNavigationAction label="Account" name='account' icon={<AccountCircle/>} />
     </BottomNavigation>
   );

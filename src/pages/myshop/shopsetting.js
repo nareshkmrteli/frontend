@@ -82,7 +82,7 @@ export function ShopSetting(){
             {},
             (data)=>{
                 const s=data.shopsetting && data.shopsetting[0]
-                s && setShopData({id:s.id,name:s.name,preorderdays:s.preorderdays,level:s.level,active:s.active,address:s.address,image:s.image})
+                s && setShopData({id:s.id,name:s.name,preorderdays:s.preorderdays,level:s.level,active:s.active,address:s.address,image:s.image,about:s.about})
                 setOptions([{},...data.address])
                 console.log(data)
             }
@@ -181,6 +181,7 @@ export function ShopSetting(){
                         <Card>
                         <CardContent>
                         <Field name='name' fullWidth required placeholder='Shop Name' component={TextField} />
+                        <Field name='about' fullWidth multiline={true} inputProps={{ maxlength: 100 }} required placeholder='about the shop ..' component={TextField} />
                         <Field name='preorderdays' required type='number'min='0' placeholder='Pre Order Days' fullWidth component={TextField} />
                         <Field name='address' fullWidth options={options}>
                             {

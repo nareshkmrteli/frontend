@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import Rating from '@material-ui/lab/Rating';
 import React from "react";
 export  function ShowList({results,selectedShopCallback=false, secondaryActionIcon=false,autofocus=false}){
     function onclick(e){
@@ -27,13 +27,10 @@ export  function ShowList({results,selectedShopCallback=false, secondaryActionIc
                 <ListItemText
                 primary={shop.name}
                 secondary={
-                    <Typography
-                        component="span"
-                        variant="body2"
-                        color="textPrimary"
-                    >
-                    {shop.description}
-                    </Typography>
+                    <>
+                    <Rating style={{verticalAlign:'sub'}} name="size-small" disabled defaultValue={shop.rating} size="small" />
+                    <span><span> </span> {shop.about}</span>
+                    </>
                 }
                 />
             {  

@@ -4,7 +4,7 @@ import { ConditionalDisplay } from 'pages/component/condtionaldisplay';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AddressModel } from '../../models/address';
-import { OrderModel } from '../../models/proposalorder';
+import { OrderModel } from '../../models/order';
 import { useDispatch, useSelector } from '../../redux/cartproposal/cart';
 import { ShowList } from './component/productshopshowlist';
 import { ShowAddressList } from './component/showaddresslist';
@@ -162,7 +162,7 @@ export function PlaceMyOrder(props){
             <br/><br/><br/><br/><br/>
             <Typography align='center' component='div' fullWidth style={{position:'absolute',left:'0',bottom:'58px',width:'100%'}}>
                 <Button  color='secondary' onClick={orderSubmit} style={{width:'100%',borderRadius:'0',backgroundColor:'#009688',style:'none'}}  variant='contained'>
-                    Place my order
+                    Place my proposal
                 </Button>
             </Typography>
         </>

@@ -12,7 +12,6 @@ function* fetchProposalList(action){
 }
 function* createProposal(action){
     try{
-        alert('saga')
         const data= yield call(proposalApi.create,action.proposal)
         yield put({type:"CREATE_PROPOSAL_SUCCESSFUL",data:data})
     }

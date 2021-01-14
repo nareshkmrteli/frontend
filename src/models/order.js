@@ -46,7 +46,12 @@ export async function OrderModel(props){
         case 'detailorder':
             config.url='/'+props.id+'/detailorder/';
             config.method='GET'
-            break;        
+            break;     
+        case 'setrating':
+            config.url=''+props.id+'/setrating/';
+            config.method='POST'
+            config.data=JSON.stringify(props.data)
+            break;   
         
     }
     try{

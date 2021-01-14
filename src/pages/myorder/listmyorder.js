@@ -43,10 +43,24 @@ export function ListMyOrder(props){
         setCancelOrderObject(false)
                     
     }
+    function setRating({id,rating}){
+        OrderModel({
+            action:'setrating',
+            params:{},
+            data:{'rating':rating},
+            id:id,
+            callback:(d,status)=>{     
+                if( status==204){
+                    setRefresh(!refresh)
+                }
+            }
+        })
+    }
     return(
         <>
         <ConditionalDisplay condition={data && data.results.length==0}  value='You have no order' />
-        <MyOrderList results={data && data.results} cancelOrder={(d)=>{setCancelOrderObject(d)}} />
+        {/*show order list  */ }
+        <MyOrderList results={data && data.results} setRating={setRating} cancelOrder={(d)=>{setCancelOrderObject(d)}} />
         <Pagination prev={data && data.previous} next={data && data.next}/>
         <Dialog open={!!cancelOrderObject} onClose={()=>setCancelOrderObject(false)}>
             <DialogContent>

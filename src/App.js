@@ -8,7 +8,6 @@ import { Account } from './pages/account/account';
 import { Address } from './pages/address/address';
 import { Inventory } from './pages/inventory/inventory';
 import { MyOrder } from './pages/myorder/myorder';
-import { MyProposal } from './pages/myproposal/myproposal';
 import { MyShop } from './pages/myshop/myshop';
 import { ShopSetting } from "./pages/myshop/shopsetting";
 import { Product } from './pages/product/product';
@@ -75,10 +74,7 @@ function App() {
           </Route> 
           <Route  path='/proposalinterface'>         
             <ProposalInterface/>
-          </Route> 
-          <Route  path='/myproposal'>         
-            <MyProposal/>
-          </Route> 
+          </Route>  
         </Switch>
       <AppBottomNavigation/>
       
