@@ -18,6 +18,16 @@ const status_map={
     '5':'Canceled'
 }
 
+let top_circle_cut={
+    width: "18px",
+    height: "18px",
+    position: "absolute",
+    backgroundColor: "white",
+    top: "-9px",
+    borderRadius: "50%",
+    borderTop: "#f75959",
+    borderBottom: "white"
+}
 export  function MyOrderList({results,setRating,selectedItemCallback=false,cancelOrder=alert,autofocus=false}){
     const cart=useSelector((s)=>{return s.cart })
     const cartDispatch=useDispatch()
@@ -64,16 +74,20 @@ export  function MyOrderList({results,setRating,selectedItemCallback=false,cance
             </ListItem>
             {
                 !item.rating && item.status =='4' &&
+                <>
                 <ListItem style={{backgroundColor:'#eeeeee'}}>
+                    <div style={top_circle_cut}></div>
+                
                     <ListItemText
                         primary={
                             <>
                             <span color='#616161'> Rate this order : </span>
-                            <Rating style={{verticalAlign:'bottom'}} max={5} onChange={(o,value)=>setRating({id:item.id,rating:value})}  value={item.rating} size="large" />
+                            <Rating style={{verticalAlign:'bottom'}} onChange={(o,value)=>setRating({id:item.id,rating:value})}  defaultValue={item.rating} size="large" />
                             </>
                     }
                     />
                 </ListItem>
+                </>
             }
             <Divider/>
             <Dialog fullWidth open={openId==item.id} onClose={()=>setOpenId(null)}>
