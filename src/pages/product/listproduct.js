@@ -53,7 +53,7 @@ export  function ListProduct({selectedProductCallback=false,secondaryActionIcon=
     return(
     <Container maxWidth='xs' component='main'  style={{position : "relative"}}>
         {   
-            <LinkButton link='/product/createproduct/' value='add new Product'/>
+            <LinkButton link='/myshop/product/createproduct/' value='add new Product'/>
         }
         <br/>
         <DropDownInput values={category.list_load_successful && category.list_data} keyname='id' value='name' onChange={categoryOnChange} label='category' />        

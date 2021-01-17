@@ -46,7 +46,7 @@ export default function ShowList({results, list_load_successful, deleteListItem,
                                 variant="body2"
                                 color="textPrimary"
                             >
-                            rate: {proposal.variant[0].rate} quantity: {proposal.variant[0].qty}
+                            rate: {proposal.rate} quantity: {proposal.qty}
                             </Typography>
                         }
                         />

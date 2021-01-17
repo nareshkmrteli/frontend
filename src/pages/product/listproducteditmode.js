@@ -18,7 +18,7 @@ export  function ListProductEditMode(props){
                     productDispatch({type:'LIST_REMOVE_ELEMENT',id:e.selectedProduct.id})
                 break
             case 'productClick':
-                history.push("/product/editproduct/"+e.selectedProduct.id,e.selectedProduct)
+                history.push("/myshop/product/editproduct/"+e.selectedProduct.id,e.selectedProduct)
                 break
                 
         }

@@ -8,7 +8,7 @@ import { ProductSelect } from "../product/productselect"
 import { VaraintForm } from './component/varaintform'
 
 export function CreateProposal(props){
-    const [variants, setVariants] = useState({variant:[{}]}) //intial value of variant 
+    const [variants, setVariants] = useState({}) //intial value of variant 
     const [selectedProduct, setselectedProduct] = useState(null)
     const [makeSubmitAsPageRefresh, setMakeSubmitAsPageRefresh] = useState(0)
     const proposalDispatch=i_useDispatch() //this dispatch is related with custom proposal context
@@ -29,12 +29,13 @@ export function CreateProposal(props){
 
     async function submit(){
         await setsubmit.current.click()
-        makeSubmit()
         setMakeSubmitAsPageRefresh(1)
     }
     
     function makeSubmit(){
-            selectedProduct && variants.variant[0].rate && proposalDispatch(
+        if(variants && variants.variant && variants.variant.attributes.length==0)
+            delete variants.variant 
+            selectedProduct && variants.rate && proposalDispatch(
             proposalAction.createProposal({
                 'product':selectedProduct.selectedProduct.id,
                 ...variants

@@ -9,8 +9,9 @@ import { VaraintForm } from "./component/varaintform"
 export function  EditInventory(props){
     const location=useLocation()
     const inventory=location.state
+    console.log(inventory)
     const setsubmit=React.useRef()
-    const [variants, setVariants] = useState({variant:inventory['variant']})
+    const [variants, setVariants] = useState(inventory)
     const [makeSubmitAsPageRefresh, setMakeSubmitAsPageRefresh] = useState(0)
     const [snackbarProps, setSnackbarProps] = useState({visible:false,message:'message snackbar'})
     const [disabled, setDisabled] = useState(false)
@@ -28,9 +29,11 @@ export function  EditInventory(props){
     async function makeSubmit(){
         setDisabled(true)   
         try{
+            if(variants && variants.variant && variants.variant.attributes.length==0)
+            delete variants.variant
             await Axios.patch(
             setting.root+`/inventory/inventory/${inventory.id}/?format=json`,
-            JSON.stringify({variant:variants.variant}),
+            JSON.stringify({rate:variants.rate,qty:variants.qty,variant:variants.variant}),
             {
                 headers:{
                     'content-type': 'application/json'

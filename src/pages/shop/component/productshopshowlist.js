@@ -48,25 +48,25 @@ export  function ShowList({results,selectedShopCallback=false, secondaryActionIc
                         variant="body2"
                         style={{color:'#aaaaaa'}}
                     >
-                    rate: {shop.variant[0].rate} <span></span>
-                    stoke: {shop.variant[0].qty}<span> </span>
+                    rate: {shop.rate} <span></span>
+                    stoke: {shop.qty}<span> </span>
                     {
-                        cart[shop.variant[0].id] &&
-                        <span>price:{cart[shop.variant[0].id]*shop.variant[0].rate}</span>
+                        cart[shop.id] &&
+                        <span>price:{cart[shop.id]*shop.rate}</span>
                     }
                     </Typography>
                 }
                 />
             {  
-            <ListItemSecondaryAction alignItems='centre' variantid={shop.variant[0].id} id={shop.product.id} index={i} actionType='SecondaryAction'>
-                {!cart[shop.variant[0].id] ?
-                <button actionType='+' onClick={cartHandleOnClick} shop={shop.shop} index={i} variant={shop.variant[0].id} product={shop.product.id}>add</button>:
+            <ListItemSecondaryAction alignItems='centre' variantid={shop.id} id={shop.product.id} index={i} actionType='SecondaryAction'>
+                {!cart[shop.id] ?
+                <button actionType='+' onClick={cartHandleOnClick} shop={shop.shop} index={i} variant={shop.id} product={shop.product.id}>add</button>:
                 <div style={{display:'inline'}}>
-                <KeyboardArrowUpOutlined actionType='+' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.variant[0].id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
+                <KeyboardArrowUpOutlined actionType='+' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
                 {
-                    <input value={cart[shop.variant[0].id] || 0} style={{textAlign:'center',height:'33%',width:'24px',fontSize:'100%',margin:'0',border:'0',padding:'0'}}/>
+                    <input value={cart[shop.id] || 0} style={{textAlign:'center',height:'33%',width:'24px',fontSize:'100%',margin:'0',border:'0',padding:'0'}}/>
                 }
-                <KeyboardArrowDownOutlined actionType='-' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.variant[0].id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
+                <KeyboardArrowDownOutlined actionType='-' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
                 </div>}
             </ListItemSecondaryAction>
             }

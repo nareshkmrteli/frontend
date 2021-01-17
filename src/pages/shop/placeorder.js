@@ -21,7 +21,7 @@ export function PlaceMyOrder(props){
         let shop
         for(const key in s.object){
             data.push(s.object[key])
-            grandTotal+=s.object[key].variant[0].rate*s.cart[key]
+            grandTotal+=s.object[key].rate*s.cart[key]
             shop=s.object[key].shop
         }
         return {grandTotal,data,qty:s.cart,shop}
@@ -41,9 +41,9 @@ export function PlaceMyOrder(props){
         //Field mapping to required field    
         const cartItems=data.map((item)=>{
             return {
-              variant:item.variant[0].id,
-              qty:qty[item.variant[0].id],
-              rate:item.variant[0].rate,
+              variant:item.id,
+              qty:qty[item.id],
+              rate:item.rate,
               
             }
         })

@@ -95,7 +95,7 @@ export function ListShop(props){
                 break
 
             if(Object.keys(cart).length==0 || (key && cart[key].shop==e.selectedShop.id) )
-                history.push('/proposalinterface/listproductproposal/?shop='+e.selectedShop.id,e.selectedShop)
+                history.push('/myshop/proposalinterface/listproductproposal/?shop='+e.selectedShop.id,e.selectedShop)
             else{
                 setOpen(true)
                 setSelectedShop(e.selectedShop)
@@ -107,13 +107,13 @@ export function ListShop(props){
         var key
         for(key in cart)
             break
-        history.push('/proposalinterface/listproductproposal/?shop='+cart[key].shop)
+        history.push('/myshop/proposalinterface/listproductproposal/?shop='+cart[key].shop)
         setSelectedShop(null)
     }
     function ContinewWithNewShop(e){
         setOpen(false)
         cartDispatch({type:'Default'})
-        history.push('/proposalinterface/listproductproposal/?shop='+selectedShop.id,selectedShop)
+        history.push('/myshop/proposalinterface/listproductproposal/?shop='+selectedShop.id,selectedShop)
         setSelectedShop(null)
     } 
     return(

@@ -93,7 +93,7 @@ export default function AccountProfile(){
                     // level is store to localstore during login
                     !userLevel ?  
                     <>  
-                    <Link to='/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 Setup my shop
@@ -107,7 +107,7 @@ export default function AccountProfile(){
                     </>
                     :
                     <>
-                    <Link to='/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Shop Setting
@@ -118,7 +118,7 @@ export default function AccountProfile(){
                         </ListItem>
                     </Link>
                     <Divider/>
-                    <Link to='/inventory' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/myshop/inventory' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Inventory
@@ -129,7 +129,7 @@ export default function AccountProfile(){
                         </ListItem>
                     </Link>
                     <Divider/>
-                    <Link to='/proposal' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/myshop/proposal' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Proposal

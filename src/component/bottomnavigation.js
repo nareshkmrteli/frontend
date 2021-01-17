@@ -29,7 +29,7 @@ export default function AppBottomNavigation() {
       }}
       value={value}
       onChange={(event, newValue) => {
-        const links=['shop','proposalinterface','account']
+        const links=['shop','myshop/proposalinterface','account']
         setValue(newValue);
         history.push('/'+links[newValue])
       }}

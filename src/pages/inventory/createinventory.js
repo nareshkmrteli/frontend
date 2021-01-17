@@ -8,7 +8,7 @@ import { ProductSelect } from "../product/productselect"
 import { VaraintForm } from './component/varaintform'
 
 export function CreateInventory(props){
-    const [variants, setVariants] = useState({variant:[{}]}) //intial value of variant 
+    const [variants, setVariants] = useState({qty:1,rate:2}) //intial value of variant 
     const [selectedProduct, setselectedProduct] = useState(null)
     const [makeSubmitAsPageRefresh, setMakeSubmitAsPageRefresh] = useState(0)
     const inventoryDispatch=i_useDispatch() //this dispatch is related with custom inventory context
@@ -29,12 +29,14 @@ export function CreateInventory(props){
 
     async function submit(){
         await setsubmit.current.click()
-        makeSubmit()
+        //makeSubmit()
         setMakeSubmitAsPageRefresh(1)
     }
     
     function makeSubmit(){
-            selectedProduct && variants.variant[0].rate && inventoryDispatch(
+            if(variants && variants.variant && variants.variant.attributes.length==0)
+                delete variants.variant 
+            selectedProduct && variants.rate && inventoryDispatch(
             inventoryAction.createInventory({
                 'product':selectedProduct.selectedProduct.id,
                 ...variants

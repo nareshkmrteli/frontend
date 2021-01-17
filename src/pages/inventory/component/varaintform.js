@@ -6,7 +6,7 @@ import React from 'react'
 import { Field, Form } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
 export function VaraintForm({variants,setvariants,setsubmit}){
-    
+        
     function onSubmit(values){
         console.log(values)
         setvariants(values)
@@ -25,20 +25,17 @@ export function VaraintForm({variants,setvariants,setsubmit}){
                   }}
                 render={({handleSubmit,form: {mutators: { push, pop }},form,submitting,values})=>(
                     <form id='jh7sdf98fd87sd98f798sdf87'  onSubmit={handleSubmit}>
-                        <FieldArray name='variant'>
-                        {({fields})=>(
-                            fields.map((name,index)=>(
-                            <Card key={index}>
+                            <Card>
                             <CardContent>
                             <Grid container alignItems='flex-start' spacing={2}>
                             <Grid item xs={6}>
-                            <Field name={`${name}.rate`} fullWidth={true} label='Rate' required type='number'  component={TextField} />
+                            <Field name={`rate`} fullWidth={true} label='Rate' required type='number'  component={TextField} />
                             </Grid>
                             <Grid item xs={6} >
-                            <Field name={`${name}.qty`} fullWidth={true} label='quantitty' required type='number' component={TextField} />
+                            <Field name={`qty`} fullWidth={true} label='quantitty' required type='number' component={TextField} />
                             </Grid>
                             </Grid>
-                            <FieldArray name={`${name}.attributes`}>
+                            <FieldArray name={`variant.attributes`}>
                             {({ fields }) =>(
                                 fields.map((name, index) => (
                                     <>
@@ -73,14 +70,10 @@ export function VaraintForm({variants,setvariants,setsubmit}){
                                 ))
                             )}
                             </FieldArray>
-                            <PlaylistAdd onClick={()=>push(`${name}.attributes`,undefined)} />
+                            <PlaylistAdd onClick={()=>push(`variant.attributes`,undefined)} />
                             </CardContent>
                             </Card>
-                            ))
-                        )
-                        }
-                       
-                        </FieldArray> 
+                             
                         <button type='submit' ref={setsubmit} hidden>
                             submit
                         </button> 

@@ -51,31 +51,31 @@ function App() {
           <Route  path='/address'>         
             <Address/>
           </Route>
-          <Route  path='/inventory'>         
-            <Inventory/>
-          </Route>  
-          <Route  path='/product'>         
-            <Product/>
-          </Route>  
-          <Route  path='/shopsetting'>         
-            <ShopSetting/>
-          </Route>
           <Route  path='/shop'>         
             <Shop/>
           </Route> 
           <Route  path='/myorder'>         
             <MyOrder/>
           </Route> 
+          <Route  path='/myshop/inventory'>         
+            <Inventory/>
+          </Route>  
+          <Route  path='/myshop/product'>         
+            <Product/>
+          </Route>  
+          <Route  path='/myshop/shopsetting'>         
+            <ShopSetting/>
+          </Route>
+          <Route  path='/myshop/proposal'>         
+            <Proposal/>
+          </Route> 
+          <Route  path='/myshop/proposalinterface'>         
+            <ProposalInterface/>
+          </Route>  
           <Route  path='/myshop'>         
             <MyShop/>
           </Route> 
-          <Route  path='/proposal'>         
-            <Proposal/>
-          </Route> 
-          <Route  path='/proposalinterface'>         
-            <ProposalInterface/>
-          </Route>  
-        </Switch>
+          </Switch>
       <AppBottomNavigation/>
       
     </Container>
