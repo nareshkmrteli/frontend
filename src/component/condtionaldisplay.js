@@ -12,7 +12,7 @@ export function ConditionalDisplay({condition=false,children}){
         <br/><br/><br/><br/><br/>
         <Typography color='textSecondary' align='center' variant='subtitle1'>
             Please setup the shop Profile to sell the product<br/> 
-            <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"blue"}}>
+            <Link to='/frontend/myshop/shopsetting' style={{textDecoration:"none",color:"blue"}}>
                 Setup my shop
             </Link>
         </Typography>

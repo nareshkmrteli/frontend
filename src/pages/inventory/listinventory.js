@@ -56,7 +56,7 @@ export  function ListInventory(props){
     return(
     <Container maxWidth='xs' component='main'  style={{position:"relative"}} className={classes.customborder}>
         <br/>
-        <Link to='/myshop/inventory/addinventory' className={classes.StyleNone}>
+        <Link to='/frontend/myshop/inventory/addinventory' className={classes.StyleNone}>
             <Button
             variant='outlined'
             size='medium'
@@ -74,7 +74,7 @@ export  function ListInventory(props){
             value={
                 <>
                 Please &nbsp;
-                <Link to='myshop/shopsetting' >
+                <Link to='/frontend/myshop/shopsetting' >
                     Activate the Shop
                 </Link>
                 , to manage inventory

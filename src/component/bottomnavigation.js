@@ -30,7 +30,7 @@ export default function AppBottomNavigation() {
       onChange={(event, newValue) => {
         const links=['shop','account']
         setValue(newValue);
-        history.push('/'+links[newValue])
+        history.push('/frontend/'+links[newValue])
       }}
       showLabels
       className={classes.root}

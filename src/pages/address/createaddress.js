@@ -21,7 +21,7 @@ export function CreateAddress(props){
 
     function submitCallack(res,status){
         if(status==200){
-        history.push('/address/listaddress');
+        history.push('/frontend/address/listaddress');
     }else if(status==404){
         setAlertbox(false);
         setError({

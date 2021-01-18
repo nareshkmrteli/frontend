@@ -30,7 +30,7 @@ export function ListAddress(){
     }
     function addressEdit(e){
         const editEddress=data.find((address)=>(address.addressid==e.target.addressid));
-        history.push('/address/editaddress',{editAddress:editEddress});
+        history.push('/frontend/address/editaddress',{editAddress:editEddress});
     }
     function addressRemove(e){
         const addressid=e.target.getAttribute('addressid');

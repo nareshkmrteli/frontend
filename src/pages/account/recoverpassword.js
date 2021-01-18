@@ -52,7 +52,7 @@ export default function RecoverPassword() {
   function submitCallack(res,status){
     if(status==200){
       console.log(res)
-      history.push('/account/'+res.id+'/verificationcode')
+      history.push('/frontend/account/'+res.id+'/verificationcode')
     }else if(status==404){
       setError({
         mobileno:true});
@@ -115,7 +115,7 @@ export default function RecoverPassword() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="/account/signin" variant="body2">
+              <Link to="/frontend/account/signin" variant="body2">
                 have account ?Login
               </Link>
             </Grid>

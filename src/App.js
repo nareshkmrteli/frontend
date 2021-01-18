@@ -25,7 +25,7 @@ import { ProposalContext } from "./redux/proposal/proposal";
 function App() {
   const history=useHistory()
   if(window.localStorage.getItem('isUserLogined')==null)
-    history.push('/account/signin')
+    history.push('/frontend/account/signin')
   const theme = createMuiTheme({
     spacing:8,
     mixins:{
@@ -48,60 +48,68 @@ function App() {
   <ProposalContext>
     <Container maxWidth='xs' style={{position:'relative',border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
         <Switch>
-          <Route  path='/account'>         
+         <Route exact  path='/frontend/account/'>         
             <Account/>  
             <AppBottomNavigation/>
           </Route>    
-          <Route  path='/address'>         
+          <Route  path='/frontend/address'>         
             <Address/>
             <AppBottomNavigation/>
           </Route>
-          <Route  path='/myorder'>         
+          <Route  path='/frontend/myorder'>         
             <MyOrder/>
             <AppBottomNavigation/>
           </Route> 
-          <Route  path='/shop'>         
+          <Route  path='/frontend/shop'>         
             <Shop/>
             <AppBottomNavigation/>
           </Route> 
-          <Route  path='/myshop/inventory'>      
+          <Route  path='/frontend/myshop/inventory'>      
             <ConditionalDisplay condition={shopExist}>
               <Inventory/>
             </ConditionalDisplay>   
             <ShopBottomNavigation/>
           </Route>  
-          <Route  path='/myshop/product'>   
+          <Route  path='/frontend/myshop/product'>   
             <ConditionalDisplay condition={shopExist}>
               <Product/>
             </ConditionalDisplay>
             <ShopBottomNavigation/>
           </Route>  
-          <Route  path='/myshop/shopsetting'>         
+          <Route  path='/frontend/myshop/shopsetting'>         
             <ShopSetting/>
             <ShopBottomNavigation/>
           </Route>
-          <Route  path='/myshop/proposal'>         
+          <Route  path='/frontend/myshop/proposal'>         
             <ConditionalDisplay condition={shopExist}>
               <Proposal/>
             </ConditionalDisplay>  
             <ShopBottomNavigation/>
           </Route> 
-          <Route  path='/myshop/proposalinterface'>         
+          <Route  path='/frontend/myshop/proposalinterface'>         
             <ConditionalDisplay condition={shopExist}>
               <ProposalInterface/>
             </ConditionalDisplay>  
             <ShopBottomNavigation/>
           </Route> 
-          <Route  path='/myshop/myshopprofile'>         
+          <Route  path='/frontend/myshop/myshopprofile'>         
             <MyShopProfile/>
             <ShopBottomNavigation/>
           </Route> 
-          <Route  path='/myshop'>    
+          <Route  path='/frontend/myshop'>    
             <ConditionalDisplay condition={shopExist}>
               <MyShop/>
             </ConditionalDisplay>
             <ShopBottomNavigation/>
           </Route> 
+          <Route exact path='/frontend'>
+            <Shop/>
+            <AppBottomNavigation/>
+          </Route>
+          <Route exact path=''>
+            <Shop/>
+            <AppBottomNavigation/>
+          </Route>
           </Switch>
       
     </Container>

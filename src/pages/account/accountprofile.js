@@ -28,7 +28,7 @@ export default function AccountProfile(){
     const mobileno=window.localStorage.getItem('mobileno')
     const [refresh, setRefresh] = useState(false) //its use to re-render the component to support localStorage update
     if(!usercontext.isUserLogined())
-        history.push('/account/signin');
+        history.push('/frontend/account/signin');
     
     function setImageRequest(e){
         const file=e.target.files
@@ -59,7 +59,7 @@ export default function AccountProfile(){
                             <img style={{height:'100%'}} src={userAvator} />
                         </Avatar>
                         <input hidden type='file' id='user_profile_file_input' onChange={setImageRequest} accept='image/*' />
-                        <Link to='/myshop/myshopprofile'>
+                        <Link to='/frontend/myshop/myshopprofile'>
                             <Avatar  style={{position:'absolute',right: '10px',top: '33%'}}>
                                 <Store/>
                             </Avatar>
@@ -71,7 +71,7 @@ export default function AccountProfile(){
                         {name}<br/>{mobileno}
                     </Typography>
                 </ListItem>
-                <Link to='/address/listaddress' style={{textDecoration:"none",color:"inherit"}}>
+                <Link to='/frontend/address/listaddress' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 Address
@@ -82,7 +82,7 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>                
                 <Divider/>
-                <Link to='/myorder' style={{textDecoration:"none",color:"inherit"}}>
+                <Link to='/frontend/myorder' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 My Order
@@ -94,7 +94,7 @@ export default function AccountProfile(){
                 </Link>
                 <Divider/>
                 <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
-                <Link to='/account/setnewpassword' style={{textDecoration:"none",color:"inherit"}}>
+                <Link to='/frontend/account/setnewpassword' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 Change Password
@@ -105,7 +105,7 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>
                 <Divider/>
-                <Link to='/account/signout' style={{textDecoration:"none",color:"inherit"}}>
+                <Link to='/frontend/account/signout' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button >
                                     <ListItemText>
                                     Logout

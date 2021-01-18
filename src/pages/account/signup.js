@@ -56,7 +56,7 @@ export default function SignUp() {
   function btnacrive(res,status){
     console.log(res)
     if(status==200){
-      history.push('/account/'+res.id+'/verificationcode')
+      history.push('/frontend/account/'+res.id+'/verificationcode')
 
     }else if(status==400){
         setError({
@@ -162,7 +162,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to='/account/signin' variant="body2">
+              <Link to='/frontend/account/signin' variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

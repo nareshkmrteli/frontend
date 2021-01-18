@@ -59,7 +59,7 @@ export function PlaceMyOrder(props){
                 <CheckCircle color='secondary' />
                 your Order is Placed
                 <Typography align='center'>
-                   <Link to='/myorder' style={{style:'none'}}>
+                   <Link to='/frontend/myorder' style={{style:'none'}}>
                         Track my order
                     </Link> 
                 </Typography>
@@ -74,7 +74,7 @@ export function PlaceMyOrder(props){
                     You have no order
                 </Typography>
                 <Typography align='center'>
-                   <Link to='/shop' style={{style:'none'}}>
+                   <Link to='/frontend/shop' style={{style:'none'}}>
                         Go to store section
                     </Link> 
                 </Typography>

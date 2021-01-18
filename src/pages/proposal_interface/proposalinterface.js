@@ -12,7 +12,7 @@ function PlaceMyOrderLink({cart,path}){
         <>
         {
             Object.keys(cart).length!=0 &&
-            <Link to={login?`${path}/placemyorder/`:'/account/signin'}>
+            <Link to={login?`${path}/placemyorder/`:'/frontend/account/signin'}>
             <Typography align='center' component='div' fullWidth style={{position:'absolute',left:'0',bottom:'58px',width:'100%'}}>
                 <Button  color='secondary' style={{width:'100%',borderRadius:'0',backgroundColor:'#009688',style:'none'}}  variant='contained'>
                     Accept the proposal

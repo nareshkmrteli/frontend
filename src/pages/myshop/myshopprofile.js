@@ -40,7 +40,7 @@ export default function MyShopProfile(){
     const mobileno=window.localStorage.getItem('mobileno')
     const [refresh, setRefresh] = useState(false) //its use to re-render the component to support localStorage update
     if(!usercontext.isUserLogined())
-        history.push('/account/signin');
+        history.push('/frontend/account/signin');
     useEffect(() => {
         if(userLevel){
             if(!shop_name){
@@ -98,7 +98,7 @@ export default function MyShopProfile(){
                             <img style={{height:'100%'}} src={userAvator} />
                         </Avatar>
                         <input hidden type='file' id='user_profile_file_input' onChange={setImageRequest} accept='image/*' />
-                        <Link to='/account'>
+                        <Link to='/frontend/account'>
                             <Avatar  style={{position:'absolute',right: '10px',top: '33%'}}>
                                 <AccountCircle className={classes.Medium}  />
                             </Avatar>
@@ -117,7 +117,7 @@ export default function MyShopProfile(){
                     // level is store to localstore during login
                     !userLevel ?  
                     <>  
-                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/frontend/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>
                                 <ListItemText>
                                 Setup my shop
@@ -151,7 +151,7 @@ export default function MyShopProfile(){
                         </Grid>
                     </ListItem>
                     <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
-                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/frontend/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Shop Setting
@@ -162,7 +162,7 @@ export default function MyShopProfile(){
                         </ListItem>
                     </Link>
                     <Divider/>
-                    <Link to='/myshop/proposal' style={{textDecoration:"none",color:"inherit"}}>
+                    <Link to='/frontend/myshop/proposal' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Create/edit my proposal

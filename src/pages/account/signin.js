@@ -71,7 +71,7 @@ export default function SignIn() {
       if(res.level!=null)
       window.localStorage.setItem('level',res.level)
       window.localStorage.setItem('shop',res.shop)
-      history.push('/account')
+      history.push('/frontend/account')
       
     }else if(status==400){
       setError({
@@ -151,13 +151,13 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to='/account/recoverpassword' variant="body2">
+              <Link to='/frontend/account/recoverpassword' variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
                 <Route>
-                   <Link to={`/account/signup`}  variant="body2">
+                   <Link to={`/frontend/account/signup`}  variant="body2">
                      <Typography variant='body2'>
                        {"Don't have an account? Sign Up"}
                      </Typography>

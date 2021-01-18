@@ -6,7 +6,7 @@ export default function Signout(){
     const history=useHistory()
 
     signout({context:this,"callback":callback});
-    history.push('/account')
+    history.push('/frontend/account')
     function callback(res,status){
         if(status==200){
             usercontext.setIsUserLogined(false); 

@@ -32,7 +32,7 @@ export default function ShopBottomNavigation() {
       onChange={(event, newValue) => {
         const links=['myshop/proposalinterface','myshop/inventory','myshop/shoporder','myshop/myshopprofile']
         setValue(newValue);
-        history.push('/'+links[newValue])
+        history.push('/frontend/'+links[newValue])
       }}
       showLabels
       className={classes.root}

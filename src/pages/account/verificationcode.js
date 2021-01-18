@@ -73,7 +73,7 @@ export default function VerifiationCode(props) {
       window.localStorage.setItem('name',res.name)
       window.localStorage.setItem('mobileno',res.mobileno)
       
-      history.push('/account')
+      history.push('/frontend/account')
     }else if(status==409){
         setError({verificationcode:true});
         setErrorMessage({verificationcode:"Invalid verification Code"});

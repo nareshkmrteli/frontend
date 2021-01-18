@@ -24,7 +24,7 @@ export function ListMyOrder(props){
                     const url2=new Url(document.location.search)
                     window.a=url2
                     url2.search['page']=parseInt(url2.search['page'])-1
-                    history.push('/myorder/'+url2.url())
+                    history.push('/frontend/myorder/'+url2.url())
                 }
             }
         })

@@ -72,7 +72,7 @@ export function PlaceMyOrder(props){
                 <CheckCircle color='secondary' />
                 your Order is Placed
                 <Typography align='center'>
-                   <Link to='/myorder' style={{style:'none'}}>
+                   <Link to='/frontend/myorder' style={{style:'none'}}>
                         Track my order
                     </Link> 
                 </Typography>
@@ -87,7 +87,7 @@ export function PlaceMyOrder(props){
                     You have no order
                 </Typography>
                 <Typography align='center'>
-                   <Link to='/shop' style={{style:'none'}}>
+                   <Link to='/frontend/shop' style={{style:'none'}}>
                         Go to store section
                     </Link> 
                 </Typography>
@@ -132,7 +132,7 @@ export function PlaceMyOrder(props){
                     <br/>
                     <Paper>
                     <ShowAddressList results={address} selectedItemCallback={(data)=>{setSelectedAddress(data.selectedItem);setOpen(false)}} />           
-                    <Link to='/address/listaddress' style={{textDecoration:'none'}}>
+                    <Link to='/frontend/address/listaddress' style={{textDecoration:'none'}}>
                         <Button fullWidth>
                             Add New Address
                         </Button>
