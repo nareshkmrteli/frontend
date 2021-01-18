@@ -57,7 +57,9 @@ async function ShopSettingAxios(action,data,callback){
         headers:headers   
         })
         shopsetting=shopsetting.data
-
+        console.log(shopsetting)
+        
+        
     }catch(e){
         console.log(e)
     }
@@ -107,7 +109,13 @@ export function ShopSetting(){
                 values,
                 (data)=>{
                     if(values.level!=null)
-                    window.localStorage.setItem('level',values.level)
+                        window.localStorage.setItem('level',values.level)
+                    window.localStorage.setItem('shop_name',data.name)
+                    window.localStorage.setItem('shop_image',data.image) 
+                    window.localStorage.setItem('shop_active',data.active)
+                    window.localStorage.setItem('shop_id',data.id) 
+
+                    
                     setSnackbarData({message:'Shop Setting Saved',visible:true})
                 }                
             )
@@ -117,7 +125,12 @@ export function ShopSetting(){
                 values,
                 (data)=>{
                     if(values.level!=null)
-                    window.localStorage.setItem('level',values.level)
+                        window.localStorage.setItem('level',values.level)
+                    window.localStorage.setItem('shop_name',data.name)
+                    window.localStorage.setItem('shop_image',data.image) 
+                    window.localStorage.setItem('shop_active',data.active)
+                    window.localStorage.setItem('shop_id',data.id) 
+                    
                     setSnackbarData({message:'Shop Setting Saved',visible:true})
                 }                
             )

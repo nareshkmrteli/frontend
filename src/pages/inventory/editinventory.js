@@ -30,7 +30,9 @@ export function  EditInventory(props){
         setDisabled(true)   
         try{
             if(variants && variants.variant && variants.variant.attributes.length==0)
-            delete variants.variant
+                delete variants.variant
+            if(variants && variants.variant==null)
+                delete variants.variant 
             await Axios.patch(
             setting.root+`/inventory/inventory/${inventory.id}/?format=json`,
             JSON.stringify({rate:variants.rate,qty:variants.qty,variant:variants.variant}),
