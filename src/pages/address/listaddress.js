@@ -55,8 +55,8 @@ export function ListAddress(){
     return(
         <Container>
             <br/>
-            <Link to='./createaddress'>
-                <Button fullWidth variant='outlined' color='primary'>
+            <Link to='./createaddress' style={{textDecoration:"none"}}>
+                <Button fullWidth variant='outlined' color='primary' >
                     Add address
                 </Button>
             </Link>
