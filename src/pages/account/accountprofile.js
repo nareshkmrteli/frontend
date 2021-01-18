@@ -3,6 +3,7 @@ import { KeyboardArrowRight, Store } from '@material-ui/icons';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import userAvator from '../../static/avator.jpg';
 import { UserContext } from './../../context/usercontext';
 import { setImage } from './../../models/users';
 const useStyles = makeStyles((theme)=>({
@@ -55,7 +56,7 @@ export default function AccountProfile(){
                             src={window.localStorage.getItem('image')}
                             onClick={()=>document.getElementById('user_profile_file_input').click()}
                         >
-                            <img style={{width:'100%'}} src="/static/avator.jpg" />
+                            <img style={{height:'100%'}} src={userAvator} />
                         </Avatar>
                         <input hidden type='file' id='user_profile_file_input' onChange={setImageRequest} accept='image/*' />
                         <Link to='/myshop/myshopprofile'>
@@ -92,39 +93,6 @@ export default function AccountProfile(){
                     </ListItem>
                 </Link>
                 <Divider/>
-                <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
-                { 
-                    // if user level  not defined that mean shop does not exist 
-                    // level is store to localstore during login
-                    !userLevel ?  
-                    <>  
-                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
-                    <ListItem button>
-                                <ListItemText>
-                                Setup my shop
-                                </ListItemText>
-                                <ListItemSecondaryAction>
-                                    <KeyboardArrowRight/>
-                                </ListItemSecondaryAction>
-                    </ListItem>
-                    </Link>
-                    <Divider/>
-                    </>
-                    :
-                    <>
-                    <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
-                        <ListItem button>
-                                    <ListItemText>
-                                    Shop Setting
-                                    </ListItemText>
-                                    <ListItemSecondaryAction>
-                                        <KeyboardArrowRight/>
-                                    </ListItemSecondaryAction>
-                        </ListItem>
-                    </Link>
-                    <Divider/>
-                    </>
-                }
                 <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
                 <Link to='/account/setnewpassword' style={{textDecoration:"none",color:"inherit"}}>
                     <ListItem button>

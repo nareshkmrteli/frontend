@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 import AppBottomNavigation from './component/bottomnavigation';
+import { ConditionalDisplay } from './component/condtionaldisplay';
 import ShopBottomNavigation from './component/shopbottomnavigation';
 import { UserContextProvider } from './context/usercontext';
 import { Account } from './pages/account/account';
@@ -36,7 +37,7 @@ function App() {
        fontSize:14,
      }
     })
-  
+  const shopExist=(window.localStorage.getItem('shop_id'))
   return (
   <ThemeProvider theme={theme}>
   <UserContextProvider>
@@ -55,20 +56,24 @@ function App() {
             <Address/>
             <AppBottomNavigation/>
           </Route>
-          <Route  path='/shop'>         
-            <Shop/>
-            <AppBottomNavigation/>
-          </Route> 
           <Route  path='/myorder'>         
             <MyOrder/>
             <AppBottomNavigation/>
           </Route> 
-          <Route  path='/myshop/inventory'>         
-            <Inventory/>
+          <Route  path='/shop'>         
+            <Shop/>
+            <AppBottomNavigation/>
+          </Route> 
+          <Route  path='/myshop/inventory'>      
+            <ConditionalDisplay condition={shopExist}>
+              <Inventory/>
+            </ConditionalDisplay>   
             <ShopBottomNavigation/>
           </Route>  
-          <Route  path='/myshop/product'>         
-            <Product/>
+          <Route  path='/myshop/product'>   
+            <ConditionalDisplay condition={shopExist}>
+              <Product/>
+            </ConditionalDisplay>
             <ShopBottomNavigation/>
           </Route>  
           <Route  path='/myshop/shopsetting'>         
@@ -76,19 +81,25 @@ function App() {
             <ShopBottomNavigation/>
           </Route>
           <Route  path='/myshop/proposal'>         
-            <Proposal/>
+            <ConditionalDisplay condition={shopExist}>
+              <Proposal/>
+            </ConditionalDisplay>  
             <ShopBottomNavigation/>
           </Route> 
           <Route  path='/myshop/proposalinterface'>         
-            <ProposalInterface/>
+            <ConditionalDisplay condition={shopExist}>
+              <ProposalInterface/>
+            </ConditionalDisplay>  
             <ShopBottomNavigation/>
           </Route> 
           <Route  path='/myshop/myshopprofile'>         
             <MyShopProfile/>
             <ShopBottomNavigation/>
           </Route> 
-          <Route  path='/myshop'>         
-            <MyShop/>
+          <Route  path='/myshop'>    
+            <ConditionalDisplay condition={shopExist}>
+              <MyShop/>
+            </ConditionalDisplay>
             <ShopBottomNavigation/>
           </Route> 
           </Switch>

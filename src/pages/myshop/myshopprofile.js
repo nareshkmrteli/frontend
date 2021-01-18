@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import setting from '../../setting';
+import userAvator from '../../static/avator.jpg';
 import { toMultipart } from '../../utility';
 import { UserContext } from './../../context/usercontext';
 const useStyles = makeStyles((theme)=>({
@@ -86,7 +87,7 @@ export default function MyShopProfile(){
                 
             </List>
             <List component='nav' aria-label="main mailbox folders"  style={{backgroundColor:"transparent", position:"relative",top:"-65px"}} className={classes.root}>
-                <ListItem button style={{textAlign:"center",height:"100%",display:"inline-block"}}>
+                <ListItem button style={{textAlign:"center",width:"100%",display:"inline-block"}}>
                     <ListItemAvatar >
                         <Avatar 
                             alt={"avator"}
@@ -94,7 +95,7 @@ export default function MyShopProfile(){
                             src={shop_image}
                             onClick={()=>document.getElementById('user_profile_file_input').click()}
                         >
-                            <img style={{width:'100%'}} src="/static/avator.jpg" />
+                            <img style={{height:'100%'}} src={userAvator} />
                         </Avatar>
                         <input hidden type='file' id='user_profile_file_input' onChange={setImageRequest} accept='image/*' />
                         <Link to='/account'>
