@@ -86,7 +86,7 @@ export default function MyShopProfile(){
                 
             </List>
             <List component='nav' aria-label="main mailbox folders"  style={{backgroundColor:"transparent", position:"relative",top:"-65px"}} className={classes.root}>
-                <ListItem button style={{textAlign:"center",width:"100%",display:"inline-block"}}>
+                <ListItem button style={{textAlign:"center",height:"100%",display:"inline-block"}}>
                     <ListItemAvatar >
                         <Avatar 
                             alt={"avator"}
@@ -110,26 +110,7 @@ export default function MyShopProfile(){
                     </Typography>
                 </ListItem>
                 <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
-                <ListItem>
-                        <Grid container xs >
-                            <Grid item xs={10}>
-                                <Typography variant='body1'>
-                                    Activate The Shop
-                                    <br/>
-                                    <Typography variant='caption' color='#a2a2a2'>
-                                        you will recive the new order if the shop is activated
-                                    </Typography> 
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Switch 
-                                    checked={shop_active}
-                                    onChange={setActive}
-                                />
-                            </Grid>
-                        </Grid>
-                </ListItem>
-               <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
+                
                 { 
                     // if user level  not defined that mean shop does not exist 
                     // level is store to localstore during login
@@ -149,10 +130,41 @@ export default function MyShopProfile(){
                     </>
                     :
                     <>
+                    <ListItem>
+                        <Grid container xs >
+                            <Grid item xs={10}>
+                                <Typography variant='body1'>
+                                    Activate The Shop
+                                    <br/>
+                                    <Typography variant='caption' color='#a2a2a2'>
+                                        you will recive the new order if the shop is activated
+                                    </Typography> 
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Switch 
+                                    checked={shop_active}
+                                    onChange={setActive}
+                                />
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                    <div style={{height:'2px',boxShadow:'inset 0px 0px 5px 0px hsl(0deg 0% 91%)'}}></div>
                     <Link to='/myshop/shopsetting' style={{textDecoration:"none",color:"inherit"}}>
                         <ListItem button>
                                     <ListItemText>
                                     Shop Setting
+                                    </ListItemText>
+                                    <ListItemSecondaryAction>
+                                        <KeyboardArrowRightIcon/>
+                                    </ListItemSecondaryAction>
+                        </ListItem>
+                    </Link>
+                    <Divider/>
+                    <Link to='/myshop/proposal' style={{textDecoration:"none",color:"inherit"}}>
+                        <ListItem button>
+                                    <ListItemText>
+                                    Create/edit my proposal
                                     </ListItemText>
                                     <ListItemSecondaryAction>
                                         <KeyboardArrowRightIcon/>

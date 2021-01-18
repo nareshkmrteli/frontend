@@ -26,10 +26,12 @@ export function PlaceMyOrder(props){
     function orderSubmit(e){
         //Field mapping to required field    
         const cartItems=data.map((item)=>{
+            console.log(item)
             return {
-              variant:item.id,
+              variant:item.variant,
               qty:qty[item.id],
               rate:item.rate,
+              product:item.product.id
               
             }
         })

@@ -1,38 +1,3 @@
-const temp={
-    cart: {
-      '9': 1
-    },
-    shop: {
-      '9': '7'
-    },
-    product: {
-      '9': '145'
-    },
-    object: {
-      '9': {
-        id: 4,
-        product: {
-          url: 'http://127.0.0.1:8000/backend/product/product/145/?format=json',
-          id: 145,
-          name: 'mnm',
-          description: 'jkjjk',
-          productimg: 'http://127.0.0.1:8000/media/n_sign_MnkfY6U.jpg',
-          category: 1,
-          attribute: []
-        },
-        shop: 7,
-        variant: [
-          {
-            id: 9,
-            rate: 2,
-            qty: 2,
-            inventory: 4,
-            attributes: []
-          }
-        ]
-      }
-    }
-  }
 const list_initial={
     cart:{
     },

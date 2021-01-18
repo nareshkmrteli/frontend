@@ -41,10 +41,10 @@ export function PlaceMyOrder(props){
         //Field mapping to required field    
         const cartItems=data.map((item)=>{
             return {
-              variant:item.id,
+              variant:item.variant,
               qty:qty[item.id],
               rate:item.rate,
-              
+              product:item.product.id
             }
         })
         OrderModel({
