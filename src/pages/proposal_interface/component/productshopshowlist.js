@@ -27,7 +27,8 @@ export  function ShowList({results,selectedShopCallback=false, secondaryActionIc
         const shop=e.currentTarget.getAttribute('shop')
         const  actionType=e.currentTarget.getAttribute('actionType')
         const index= e.currentTarget.getAttribute("index")
-        console.log(variant,actionType,product,shop)
+        if(cart[variant] && results[index].qty<cart[variant]+1 && actionType=='+')
+            return 
         cartDispatch({type:'ADD_OR_UPDATE',key:actionType,product:product,variant:variant,shop:shop,object:results[index]})
     }
     return(

@@ -15,7 +15,7 @@ export function Account(){
                 <Route exact path={path}>
                     <AccountProfile/>
                 </Route>
-                <Route exact path={`${path}/signup`}>
+               <Route exact path={`${path}/signup`}>
                     <SignUp/>
                 </Route>
                 <Route exact path={`${path}/signin`}>
@@ -31,7 +31,7 @@ export function Account(){
                 <Route path={`${path}/signout`}>
                     <Signout/>
                 </Route>
-
+                
                 
             </Switch>   
     

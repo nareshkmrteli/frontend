@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core'
 import React from 'react'
 import { Link } from 'react-router-dom'
 export function ConditionalDisplay({condition=false,children}){
+    condition=(window.localStorage.getItem('shop_id'))
     return(
         <>
         {

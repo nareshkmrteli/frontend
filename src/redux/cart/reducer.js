@@ -1,3 +1,4 @@
+
 const list_initial={
     cart:{
     },
@@ -21,25 +22,25 @@ export function cartReducer(state=list_initial,action){
                 product:{...state.product},
                 object:{...state.object}
             }
-            if(newstate.cart[action.variant]!=undefined){
+            if(newstate.cart[action.index]!=undefined){
                 if(action.key=='+') //increase,decrease
-                    newstate.cart[action.variant]+=1
+                    newstate.cart[action.index]+=1
                 if(action.key=='-')
-                    if(newstate.cart[action.variant]==1){
-                        delete newstate.cart[action.variant]
-                        delete newstate.shop[action.variant]
-                        delete newstate.product[action.variant]
-                        delete newstate.object[action.variant]
+                    if(newstate.cart[action.index]==1){
+                        delete newstate.cart[action.index]
+                        delete newstate.shop[action.index]
+                        delete newstate.product[action.index]
+                        delete newstate.object[action.index]
                     }
                         
                     else
-                    newstate.cart[action.variant]+=-1
+                    newstate.cart[action.index]+=-1
             }else{
                 if(action.key=='+'){//set value to one on add
-                    newstate.cart[action.variant]=1
-                    newstate.product[action.variant]=action.product
-                    newstate.shop[action.variant]=action.shop
-                    newstate.object[action.variant]=action.object
+                    newstate.cart[action.index]=1
+                    newstate.product[action.index]=action.product
+                    newstate.shop[action.index]=action.shop
+                    newstate.object[action.index]=action.object
                 }
             }
             break

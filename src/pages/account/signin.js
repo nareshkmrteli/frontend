@@ -55,7 +55,6 @@ export default function SignIn() {
   const [Alertbox,setAlertbox]=useState({severity:'info',title:'title',message:'some message here'})
   const history=useHistory();
   const usercontext=GetUserContext()
-
   function onSubmit(e){
     e.preventDefault();
     signIn({callback:submitCallack,data:data});

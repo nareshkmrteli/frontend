@@ -57,10 +57,10 @@ export function PlaceMyOrder(props){
             value={
                 <>
                 <CheckCircle color='secondary' />
-                your Order is Placed
+                Propsal Accepted Successfully
                 <Typography align='center'>
-                   <Link to='/frontend/myorder' style={{style:'none'}}>
-                        Track my order
+                   <Link to='/frontend/myshop/shoporder' style={{style:'none'}}>
+                        View my shop order
                     </Link> 
                 </Typography>
                 </>
@@ -71,11 +71,11 @@ export function PlaceMyOrder(props){
             value={
                 <>
                 <Typography variant='body1'>
-                    You have no order
+                    You have no proposal in cart
                 </Typography>
                 <Typography align='center'>
-                   <Link to='/frontend/shop' style={{style:'none'}}>
-                        Go to store section
+                   <Link to='/frontend/myshop/proposalinterface' style={{style:'none'}}>
+                        Accept a proposal
                     </Link> 
                 </Typography>
                 </>

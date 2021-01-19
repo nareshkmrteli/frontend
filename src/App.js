@@ -48,7 +48,7 @@ function App() {
   <ProposalContext>
     <Container maxWidth='xs' style={{position:'relative',border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
         <Switch>
-         <Route exact  path='/frontend/account/'>         
+         <Route  path='/frontend/account'>         
             <Account/>  
             <AppBottomNavigation/>
           </Route>    

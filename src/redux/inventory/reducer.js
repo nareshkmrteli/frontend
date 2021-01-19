@@ -83,7 +83,7 @@ export function CreateInventoryReducer(state=create_initial,action){
             break
         default:
             newstate={
-                ...state
+                ...create_initial
             }
         
     }
@@ -124,7 +124,7 @@ export function DeleteInventoryReducer(state=delete_initial,action){
             break
         default:
             newstate={
-                ...state
+                ...delete_initial
             }
         
     }

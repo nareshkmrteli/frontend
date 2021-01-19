@@ -1,13 +1,14 @@
 import { Button, Container } from '@material-ui/core'
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import setting from "../../setting"
 import { Snackbars } from '../component/snackbar'
 import { SelectedProduct } from "../product/component/selectedproduct"
 import { VaraintForm } from "./component/varaintform"
 export function  EditInventory(props){
     const location=useLocation()
+    const history =useHistory()
     const inventory=location.state
     console.log(inventory)
     const setsubmit=React.useRef()
@@ -42,6 +43,11 @@ export function  EditInventory(props){
                 }
             })
             setSnackbarProps({visible:true,message:'Inventory Updated Sucessfully'})
+           
+            setTimeout(()=>{
+                history.goBack()
+            },2500)
+        
         }catch(e){
             console.log(e.request)
             alert('fail')

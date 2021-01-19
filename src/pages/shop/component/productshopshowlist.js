@@ -28,7 +28,10 @@ export  function ShowList({results,selectedShopCallback=false, secondaryActionIc
         const  actionType=e.currentTarget.getAttribute('actionType')
         const index= e.currentTarget.getAttribute("index")
         console.log(variant,actionType,product,shop)
-        cartDispatch({type:'ADD_OR_UPDATE',key:actionType,product:product,variant:variant,shop:shop,object:results[index]})
+        //variant is use as key to store data in cart but no longer so now inventory id is use but the name is still same
+        if(cart[variant] && results[index].qty<cart[variant]+1 && actionType=='+')
+            return 
+        cartDispatch({type:'ADD_OR_UPDATE',key:actionType,product:product,index:variant,shop:shop,object:results[index]})
     }
     return(
         <List>
@@ -64,7 +67,7 @@ export  function ShowList({results,selectedShopCallback=false, secondaryActionIc
                 <div style={{display:'inline'}}>
                 <KeyboardArrowUpOutlined actionType='+' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
                 {
-                    <input value={cart[shop.id] || 0} style={{textAlign:'center',height:'33%',width:'24px',fontSize:'100%',margin:'0',border:'0',padding:'0'}}/>
+                    <input value={cart[shop.id] || 0} onChange={(e)=>alert(e.target.value)} style={{textAlign:'center',height:'33%',width:'24px',fontSize:'100%',margin:'0',border:'0',padding:'0'}}/>
                 }
                 <KeyboardArrowDownOutlined actionType='-' onClick={cartHandleOnClick} index={i} shop={shop.shop} variant={shop.id} product={shop.product.id} style={{height:'33%',display:'block'}}/>
                 </div>}
