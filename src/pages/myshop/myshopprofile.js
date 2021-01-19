@@ -83,7 +83,7 @@ export default function MyShopProfile(){
     }
     return(
         <Container maxWidth='xs' component='main'  style={{position:"relative",padding:"0px"}} className={classes.customborder}>
-            <List style={{height:"100px",backgroundImage:"linear-gradient(to right, #007cde, rgb(35 230 255 / 75%)),url('/static/account-background-2.jpg')",backgroundBlendMode:"darken"}}>
+            <List style={{height:"100px",backgroundImage:"linear-gradient(to right, #007cde, rgb(35 230 255 / 75%)),url('/static/frontend/build/static/account-background-2.jpg')",backgroundBlendMode:"darken"}}>
                 
             </List>
             <List component='nav' aria-label="main mailbox folders"  style={{backgroundColor:"transparent", position:"relative",top:"-65px"}} className={classes.root}>

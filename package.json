@@ -1,7 +1,7 @@
 {
   "name": "localdots",
   "version": "0.1.0",
-  "homepage":"/frontend/static/build/",
+  "homepage":"/static/frontend/build/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
