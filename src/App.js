@@ -13,6 +13,7 @@ import { MyOrder } from './pages/myorder/myorder';
 import { MyShop } from './pages/myshop/myshop';
 import MyShopProfile from './pages/myshop/myshopprofile';
 import { ShopSetting } from "./pages/myshop/shopsetting";
+import { Notification } from './pages/notification/notification';
 import { Product } from './pages/product/product';
 import { Proposal } from './pages/proposal/proposal';
 import { ProposalInterface } from './pages/proposal_interface/proposalinterface';
@@ -46,7 +47,7 @@ function App() {
   <CartContext>
   <CartProposalContext>
   <ProposalContext>
-    <Container maxWidth='xs' style={{position:'relative',border:"red 1px dotted",maxWidth:"445px",padding:'0',height:window.innerHeight+'px'}}>
+    <Container maxWidth='xs' style={{position:'relative',border:"red 1px dotted",maxWidth:"445px",padding:'0',minHeight:window.innerHeight+'px'}}>
         <Switch>
          <Route  path='/frontend/account'>         
             <Account/>  
@@ -64,6 +65,10 @@ function App() {
             <Shop/>
             <AppBottomNavigation/>
           </Route> 
+          <Route  path='/frontend/notification'>         
+            <Notification/>
+            <AppBottomNavigation/>
+          </Route>
           <Route  path='/frontend/myshop/inventory'>      
             <ConditionalDisplay condition={shopExist}>
               <Inventory/>

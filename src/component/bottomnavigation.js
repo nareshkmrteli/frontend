@@ -1,7 +1,7 @@
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { makeStyles } from '@material-ui/core/styles';
-import { AccountCircle, Storefront } from '@material-ui/icons';
+import { AccountCircle, NotificationsActive, Storefront } from '@material-ui/icons';
 import React from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 const useStyles = makeStyles({
@@ -28,7 +28,7 @@ export default function AppBottomNavigation() {
       }}
       value={value}
       onChange={(event, newValue) => {
-        const links=['shop','account']
+        const links=['shop','notification','account']
         setValue(newValue);
         history.push('/frontend/'+links[newValue])
       }}
@@ -36,6 +36,7 @@ export default function AppBottomNavigation() {
       className={classes.root}
     >
       <BottomNavigationAction label="StroreFront" name='shop' icon={<Storefront />} />
+      <BottomNavigationAction label='notification' name='notification' icon={<NotificationsActive/>} />
       <BottomNavigationAction label="Account" name='account' icon={<AccountCircle/>} />
     </BottomNavigation>
   );

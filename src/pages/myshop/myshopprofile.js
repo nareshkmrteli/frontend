@@ -31,7 +31,7 @@ export default function MyShopProfile(){
     const [userLevel, setUserLevel] = useState(window.localStorage.getItem('level'))
     const [shop_name] = useState(window.localStorage.getItem('shop_name'))
     const [shop_image,setShop_image] = useState(window.localStorage.getItem('shop_image'))
-    const [shop_active,setShop_active] = useState(window.localStorage.getItem('shop_active'))
+    const [shop_active,setShop_active] = useState(window.localStorage.getItem('shop_active')=='true'?true:false)
     const [shop_id] = useState(window.localStorage.getItem('shop_id'))
     const classes=useStyles()
     const usercontext = useContext(UserContext)

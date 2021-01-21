@@ -21,20 +21,6 @@ function StatusOptions(){
     )
 }
 function DetailOrderList({results,orderStatusUpdate=null,orderCancel=null}){
-    const [totalSum, setTotalSum] = useState(false)
-    useEffect(
-        () => {
-            if(results && results.items){
-                let sum=0;
-                for(let index in results.items){
-                    sum+=results.items[index].qty*results.items[index].rate
-                }
-                setTotalSum(sum)
-            }
-        },
-        [results],
-    )
-
     return(
         <>
         {
@@ -66,7 +52,7 @@ function DetailOrderList({results,orderStatusUpdate=null,orderCancel=null}){
         }
         {
             <Typography style={{padding:'5px'}} >
-                Total Price : <span style={{padding:'5px',color:'green',fontWeight:'bolder'}}>{totalSum} /-</span>
+                Total Price : <span style={{padding:'5px',color:'green',fontWeight:'bolder'}}>{results && results.netpay} /-</span>
             </Typography>
         }
         <br/><br/>

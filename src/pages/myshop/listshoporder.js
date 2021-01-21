@@ -61,6 +61,7 @@ export function ListShopOrder(props){
             <ConditionalDisplay  condition={data.results && data.results.length==0} value='Nothting to show' />
             <ShopOrderList  results={data && data.results} selectedItemCallback={(e)=>{history.push('/frontend/myshop/detailorder/'+e.selectedItem.id)}} />
             <Pagination2 prev={data.previous} next={data.next} page={queryParameter.page && parseInt(queryParameter.page)} setPage={(newpage)=>{console.log(newpage);setQueryParameter({...queryParameter,page:newpage})}} />
+            <br/><br/><br/><br/>
         </Container>
         </>
     )
